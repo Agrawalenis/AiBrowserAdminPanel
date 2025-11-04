@@ -7,10 +7,10 @@ import Button from "../../Components/buttons/Button";
 import Pagination from "../../Components/table/Pagination";
 import mockEmployees from "../../mock/employees";
 import AddNewEmployeeHeader, { type TabType } from "../../Components/layout/AddNewEmployeeHeader";
-import PersonalInfo from "./PersonalInfo";
-import ProfessionalInfo from "./ProfessionalInfo";
-import Documents from "./Documents";
-import AccountAccess from "./AccountAccess";
+import PersonalInfo from "../Employees/PersonalInfo";
+import ProfessionalInfo from "../Employees/ProfessionalInfo";
+import Documents from "../Employees/Documents";
+import AccountAccess from "../Employees/AccountAccess";
 
 const ITEMS_PER_PAGE = 10;
 
@@ -152,7 +152,7 @@ const AddNewEmployee: React.FC<AddNewEmployeeProps> = ({ onMount }) => {
   const navigate = useNavigate();
 
   const handleRowClick = (employee: Employee) => {
-    navigate(`/users/${employee.id}`);
+    navigate(`/employees/${employee.id}`);
   };
 
   const handleTabChange = (tab: TabType) => {

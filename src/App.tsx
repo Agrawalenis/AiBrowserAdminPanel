@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
-import UserProfile from "./Pages/user/UserProfile";
+import UserProfile from "./Pages/User/UserProfile";
 import Sidebar from "./Components/sidebar/Sidebar";
-import Profile from './Pages/user/Profile';
-import AllUsers from "./Pages/allusers/AllUsers";
+import Profile from './Pages/User/Profile';
+import AllUsers from "./Pages/AllUsers/AllUsers";
 import AllEmployees from "./Pages/AllEmployees/AllEmployees";
-import Downloads from "./Pages/user/Downloads";
-import Bookmarks from "./Pages/user/Bookmarks";
-import Dashboard from "./Pages/user/Dashboard";
+import Downloads from "./Pages/User/Downloads";
+import Bookmarks from "./Pages/User/Bookmarks";
+import Dashboard from "./Pages/User/Dashboard";
 import AddNewEmployee from "./Pages/AllEmployees/AddNewEmployee";
 import Jobs from "./Pages/Jobs/Jobs";
 import Settings from "./Pages/Settings/Settings";
+import EmployeeDetails from "./Pages/Employees/EmployeeDetails";
 
 const AppContent: React.FC = () => {
   const [activePage, setActivePage] = useState("All Users");
@@ -43,6 +44,7 @@ const AppContent: React.FC = () => {
         <Routes>
           <Route path="/" element={<AllUsers />} />
           <Route path="/users/:userId" element={<UserProfile />} />
+          <Route path="/employees/:id" element={<EmployeeDetails />} />
           <Route path="/all-employees" element={<AllEmployees/>}/>
           <Route path="/users/:userId/profile" element={<Profile />} />
           <Route path="/users/:userId/downloads" element={<Downloads />} />

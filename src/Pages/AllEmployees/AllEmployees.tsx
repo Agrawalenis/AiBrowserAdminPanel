@@ -174,7 +174,7 @@ const AllEmployees: React.FC<AllEmployeesProps> = ({ onMount }) => {
   const navigate = useNavigate();
 
   const handleRowClick = (employee: Employee) => {
-    navigate(`/users/${employee.id}`);
+    navigate(`/employees/${employee.id}`);
   };
 
   return (

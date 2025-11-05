@@ -58,16 +58,16 @@ const Downloads: React.FC<DownloadsProps> = () => {
   };
 
   const allActivities: ActivityItem[] = [
-    { id: 1, date: '2025-07-01', website: 'figma.com', status: 'Completed', name: 'Video Name', image: '/images/video.png' },
-    { id: 2, date: '2025-07-01', website: 'figma.com', status: 'In Progress', name: 'Video Name', image: '/images/video.png' },
-    { id: 3, date: '2025-07-02', website: 'figma.com', status: 'Failed', name: 'Video Name', image: '/images/video.png' },
-    { id: 4, date: '2025-07-02', website: 'figma.com', status: 'Completed', name: 'Video Name', image: '/images/video.png' },
-    { id: 5, date: '2025-07-03', website: 'figma.com', status: 'Completed', name: 'Image Name', image: '/images/image.png' },
-    { id: 6, date: '2025-07-03', website: 'figma.com', status: 'In Progress', name: 'Video Name', image: '/images/video.png' },
-    { id: 7, date: '2025-07-04', website: 'figma.com', status: 'Completed', name: 'Video Name', image: '/images/video.png' },
-    { id: 8, date: '2025-07-04', website: 'figma.com', status: 'In Progress', name: 'Video Name', image: '/images/video.png' },
-    { id: 9, date: '2025-07-05', website: 'figma.com', status: 'Failed', name: 'Video Name', image: '/images/video.png' },
-    { id: 10, date: '2025-07-05', website: 'figma.com', status: 'Completed', name: 'Video Name', image: '/images/video.png' },
+    { id: 1, date: '2025-07-01', website: 'Figma.com', status: 'Completed', name: 'Video Name', image: '/images/video.png' },
+    { id: 2, date: '2025-07-01', website: 'Figma.com', status: 'In Progress', name: 'Video Name', image: '/images/video.png' },
+    { id: 3, date: '2025-07-02', website: 'Figma.com', status: 'Failed', name: 'Video Name', image: '/images/video.png' },
+    { id: 4, date: '2025-07-02', website: 'Figma.com', status: 'Completed', name: 'Video Name', image: '/images/video.png' },
+    { id: 5, date: '2025-07-03', website: 'Figma.com', status: 'Completed', name: 'Image Name', image: '/images/image.png' },
+    { id: 6, date: '2025-07-03', website: 'Figma.com', status: 'In Progress', name: 'Video Name', image: '/images/video.png' },
+    { id: 7, date: '2025-07-04', website: 'Figma.com', status: 'Completed', name: 'Video Name', image: '/images/video.png' },
+    { id: 8, date: '2025-07-04', website: 'Figma.com', status: 'In Progress', name: 'Video Name', image: '/images/video.png' },
+    { id: 9, date: '2025-07-05', website: 'Figma.com', status: 'Failed', name: 'Video Name', image: '/images/video.png' },
+    { id: 10, date: '2025-07-05', website: 'Figma.com', status: 'Completed', name: 'Video Name', image: '/images/video.png' },
   ];
 
     const totalPages = 4; // static 4 pages for now
@@ -81,16 +81,16 @@ const Downloads: React.FC<DownloadsProps> = () => {
     <>
       <Topbar 
         title={
-          <div className="font-['Lexend'] font-light text-[16px] leading-6 text-[#16151C]">
+          <div className="w-[140px] h-[30px] font-semibold text-[20px] leading-6 text-[#16151C]">
             User Detail
           </div>
         }
         subtitle="User All Information"
-        subtitleClassName="text-[14px] leading-5 text-[#A2A1A8] font-light"
+        subtitleClassName="w-[168px] h-[22px] font-light text-[14px] leading-6 text-[#9CA3AF]"
       />
 
       {/* Main Content Area */}
-      <div className="flex-1 overflow-auto p-20 pt-0 pb-2 pl-1 pr-6">
+      <div className="flex-1 overflow-auto p-20 pt-12 pb-2 pl-1 pr-6">
         {/* Outer square container */}
         {/* <div className="w-full h-full border-2 border-[#A2A1A833] rounded-lg p-4 px-0"> */}
 
@@ -119,7 +119,7 @@ const Downloads: React.FC<DownloadsProps> = () => {
 
                 <button
                   onClick={() => console.log('Edit Profile Clicked')}
-                  className="flex items-center gap-2 bg-[#7152F3] hover:bg-[#6944F5] text-white text-sm font-medium px-5 py-2.5 rounded-[10px] transition"
+                  className="flex items-center gap-2 bg-[#7152F3] hover:bg-[#6944F5] text-white text-sm font-medium px-5 py-2.5 rounded-[10px] transition mt-8"
                 >
                   <img src="/images/edit.png" alt="Edit" className="w-[24px] h-[24px] invert" />
                   <span>Edit Profile</span>
@@ -127,10 +127,10 @@ const Downloads: React.FC<DownloadsProps> = () => {
               </div>
 
               {/* Sidebar + Activity List */}
-              <div className="flex flex-row p-6 border border-[#A2A1A833]">
+              <div className="flex flex-row p-6 border-t border-[#A2A1A833]">
                 {/* Profile Sidebar */}
                 <div className="w-[242px] h-[280px] pr-6 border-[#A2A1A833]">
-                  <div className="flex flex-col bg-white rounded-md border border-gray-200 overflow-hidden">
+                  <div className="flex flex-col bg-white rounded-md border border-gray-200 overflow-hidden space-y-2">
                     {[
                       { id: 'profile', label: 'Profile', icon: '/images/person.png' },
                       { id: 'activity', label: 'Daily Activity', icon: '/images/calendar-check.png' },
@@ -155,11 +155,11 @@ const Downloads: React.FC<DownloadsProps> = () => {
                             setActiveTab(item.id);
                           }
                         }}
-                        className={`flex items-center gap-3 px-4 py-3 transition
+                        className={`flex items-center gap-3 px-4 py-3 transition w-full h-[56px]
                           ${activeTab === item.id 
                             ? 'bg-[#7152F3] text-white rounded-[10px]' 
                             : 'text-[#16151C] hover:bg-gray-50'} 
-                          font-['Lexend'] font-light text-base leading-6`}
+                          font-light text-base leading-6`}
                       >
                         <img 
                           src={item.icon} 
@@ -184,40 +184,40 @@ const Downloads: React.FC<DownloadsProps> = () => {
                 ) : (
                   <table className="w-full text-sm text-left text-gray-600">
                     <thead className="sticky top-0 z-10 bg-white">
-                      <tr className="font-['Lexend'] font-light text-base leading-6 text-[#A2A1A8] tracking-normal">
+                      <tr className=" font-light text-base leading-6 text-[#A2A1A8] tracking-normal">
                         <th className="pr-1 pl-2 py-3 w-[150px] text-left">Date</th>
                         <th className="px-0 py-3 text-left">Website</th>
-                        <th className="px-16 py-3 text-right">Status</th>
+                        <th className="px-9 py-3 text-right font-light text-base leading-6 text-[#A2A1A8] tracking-normal">Status</th>
                       </tr>
                     </thead>
                     <tbody>
                       {paginatedActivities.map((item) => (
                         <tr key={item.id} className="border-b border-t hover:bg-gray-50">
-                          <td className="px-2 py-3 font-['Lexend'] font-light text-base leading-6 text-[#16151C] tracking-normal">{formatDate(item.date)}</td>
-                          <td className="px-2 py-3 flex gap-[20px]">
+                          <td className="px-2 py-3  font-light text-base leading-6 text-[#16151C] tracking-normal">{formatDate(item.date)}</td>
+                          <td className="px-2 py-3 flex gap-[10px]">
                             <img src={item.image} alt="" className="w-5 h-5" />
-                            <span className="font-medium text-[#7A5AF8] cursor-pointer">
+                            <span className="font-medium text-[#16151C] cursor-pointer">
                               {item.name}
                             </span>{' '}
-                            - {item.website}
+                            - {' '} <span className="font-light text-[#16151C] cursor-pointer"> {item.website}</span>
                           </td>
                           <td className="px-4 py-3 text-right">
-                            <div className="flex justify-end gap-0">
+                            <div className="flex justify-end">
                               <button
                                 onClick={() => console.log('View', item.id)}
-                                className="w-8 h-8 flex items-center justify-center rounded hover:bg-gray-100 transition"
+                                className="w-[24px] h-[24px] flex items-center justify-center rounded hover:bg-gray-100 transition"
                               >
                                 <img src="/images/view.png" alt="View" className="w-4 h-4" />
                               </button>
                               <button
                                 onClick={() => console.log('Edit', item.id)}
-                                className="w-8 h-8 flex items-center justify-center rounded hover:bg-gray-100 transition"
+                                className="w-[24px] h-[24px] flex items-center justify-center rounded hover:bg-gray-100 transition"
                               >
                                 <img src="/images/edit.png" alt="Edit" className="w-4 h-4" />
                               </button>
                               <button
                                 onClick={() => console.log('Delete', item.id)}
-                                className="w-8 h-8 flex items-center justify-center rounded hover:bg-gray-100 transition"
+                                className="w-[24px] h-[24px] flex items-center justify-center rounded hover:bg-gray-100 transition"
                               >
                                 <img src="/images/trash.png" alt="Delete" className="w-4 h-4" />
                               </button>
@@ -230,9 +230,8 @@ const Downloads: React.FC<DownloadsProps> = () => {
                 )}
               </div>
               </div>
-          </div>
-          {/* Pagination BELOW inner div and ABOVE outer div end */}
-          <div className="border-gray-200">
+               {/* Pagination BELOW inner div and ABOVE outer div end */}
+          <div className="border-gray-200 ml-4">
                   <Pagination
                     currentPage={currentPage}
                     totalPages={totalPages}
@@ -240,6 +239,7 @@ const Downloads: React.FC<DownloadsProps> = () => {
                     itemsPerPage={itemsPerPage}
                     onPageChange={setCurrentPage}
                   />
+          </div>
           </div>
         {/* </div> */}
       </div>

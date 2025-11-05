@@ -11,23 +11,35 @@ export default function Documents({ isEditing }: Props) {
     "Salary Slip_June.pdf",
     "Salary Slip_May.pdf",
     "Salary Slip_April.pdf",
-    "Reliving Letter.pdf",
+    "Relieving Letter.pdf",
     "Experience Letter.pdf",
   ];
 
   return (
-    <div className="grid grid-cols-2 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 font-['Lexend']">
       {docs.map((doc, index) => (
         <div
           key={index}
-          className="flex justify-between items-center border border-gray-300 rounded-xl px-4 py-3"
+          className="flex justify-between items-center border rounded-lg px-4 py-3 bg-white hover:shadow-sm transition"
+          style={{ borderColor: "#A2A1A81A" }}
         >
-          <span className="text-gray-700 font-medium">{doc}</span>
-          <div className="flex gap-3">
-            <button className="text-gray-500 hover:text-purple-600">
+          {/* Document name */}
+          <span className="text-[16px] text-[#16151C] font-medium truncate max-w-[70%]">
+            {doc}
+          </span>
+
+          {/* Action buttons */}
+          <div className="flex gap-3 items-center">
+            <button
+              className="text-[#16151C] hover:text-[#7152F3] transition"
+              title="View Document"
+            >
               <Eye className="w-5 h-5" />
             </button>
-            <button className="text-gray-500 hover:text-purple-600">
+            <button
+              className="text-[#16151C] hover:text-[#7152F3] transition"
+              title="Download Document"
+            >
               <Download className="w-5 h-5" />
             </button>
           </div>

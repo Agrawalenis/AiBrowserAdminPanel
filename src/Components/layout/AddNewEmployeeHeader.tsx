@@ -34,7 +34,7 @@ const AddNewEmployeeHeader: React.FC<AddNewEmployeeHeaderProps> = ({
                     className={`
                       px-3 py-2 text-xs font-medium transition-colors duration-200 flex items-center space-x-2
                       ${activeTab === tab.id
-                        ? 'text-[#7251F4]'
+                        ? 'text-[#7152F3]'
                         : 'text-gray-500 hover:text-gray-700'
                       }
                     `}
@@ -80,7 +80,7 @@ const AddNewEmployeeHeader: React.FC<AddNewEmployeeHeaderProps> = ({
                   {/* Slider line below */}
                   <div 
                     className={`
-                      h-0.5 bg-[#7251F4] transition-all duration-300 ease-in-out mt-1
+                      h-0.5 bg-[#7152F3] transition-all duration-300 ease-in-out mt-1
                       ${activeTab === tab.id ? 'w-full' : 'w-0'}
                     `}
                     style={{
@@ -104,7 +104,7 @@ const AddNewEmployeeHeader: React.FC<AddNewEmployeeHeaderProps> = ({
               className={`
                 w-full text-left px-3 py-2 text-xs font-medium rounded-md transition-colors duration-200 flex items-center space-x-2
                 ${activeTab === tab.id
-                  ? 'bg-[#7251F4] text-white'
+                  ? 'bg-[#7152F3] text-white'
                   : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
                 }
               `}
@@ -112,7 +112,7 @@ const AddNewEmployeeHeader: React.FC<AddNewEmployeeHeaderProps> = ({
               <span className={`
                 flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold
                 ${activeTab === tab.id
-                  ? 'bg-white text-[#7251F4]'
+                  ? 'bg-white text-[#7152F3]'
                   : 'bg-gray-100 text-gray-600'
                 }
               `}>

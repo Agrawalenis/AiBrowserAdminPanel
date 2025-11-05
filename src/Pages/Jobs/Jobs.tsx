@@ -64,7 +64,7 @@ const Jobs: React.FC<JobsProps> = ({ onMount }) => {
                   <span className="text-base leading-6 text-white text-[16px] font-medium">Add New Job</span>
                 </div>
               }
-              style={{ backgroundColor: '#7251F4', color: 'white' }}
+              style={{ backgroundColor: '#7152F3', color: 'white' }}
               className="px-4 py-2 rounded-lg text-sm hover:bg-[#5e44d1]"
               onClick={handleAddJobClick}
             />

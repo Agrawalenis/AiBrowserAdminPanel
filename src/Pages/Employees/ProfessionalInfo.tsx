@@ -18,7 +18,7 @@ export default function ProfessionalInfo({ isEditing }: Props) {
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-5 font-['Lexend']">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-5">
       {Object.entries(info).map(([key, value]) => (
         <div
           key={key}

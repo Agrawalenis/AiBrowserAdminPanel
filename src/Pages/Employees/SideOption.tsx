@@ -34,7 +34,7 @@ const SideOption: React.FC<SideOptionProps> = ({ active, onChange }) => {
   ];
 
   return (
-    <aside className="w-full md:w-[200px] font-[Lexend]">
+    <aside className="w-full md:w-[200px]">
       <div className="border border-[#E5E7EB] rounded-xl bg-white p-2 space-y-2">
         {items.map((it) => {
           const isActive = active === it.id;

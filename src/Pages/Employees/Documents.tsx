@@ -16,7 +16,7 @@ export default function Documents({ isEditing }: Props) {
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 font-['Lexend']">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       {docs.map((doc, index) => (
         <div
           key={index}

@@ -10,10 +10,30 @@ import Documents from "./Documents";
 import AccountAccess from "./AccountAccess";
 
 const tabs = [
-  { key: "personal", label: "Personal Information" },
-  { key: "professional", label: "Professional Information" },
-  { key: "documents", label: "Documents" },
-  { key: "access", label: "Account Access" },
+  { 
+    key: "personal", 
+    label: "Personal Information",
+    icon: "/images/user.svg",
+    activeIcon: "/images/user-active.svg"
+  },
+  { 
+    key: "professional", 
+    label: "Professional Information",
+    icon: "/images/briefcase.svg",
+    activeIcon: "/images/briefcase-active.png"
+  },
+  { 
+    key: "documents", 
+    label: "Documents",
+    icon: "/images/document-text.svg",
+    activeIcon: "/images/document-text-active.png"
+  },
+  { 
+    key: "access", 
+    label: "Account Access",
+    icon: "/images/lock.svg",
+    activeIcon: "/images/lock-active.svg"
+  },
 ];
 
 const EmployeeDetails: React.FC = () => {
@@ -47,7 +67,7 @@ const EmployeeDetails: React.FC = () => {
     <div className="w-full flex flex-col min-h-screen bg-white">
 
       {/* --- Top Header --- */}
-      <div className="flex justify-between items-center bg-white px-6 py-5 border-b border-gray-200">
+      <div className="flex justify-between items-center bg-white px-6 py-2 border-gray-200">
         <div>
           <div className="text-[#16151C] font-semibold text-[24px] leading-[34px]">
             {employee.name}
@@ -104,7 +124,7 @@ const EmployeeDetails: React.FC = () => {
       <div className="bg-white border border-gray-200 rounded-xl mx-6 my-6 shadow-sm">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center p-6 border-b border-gray-100">
           <div className="flex items-center space-x-5">
-            <div className="h-20 w-20 rounded-lg overflow-hidden bg-gray-100 flex items-center justify-center">
+            <div className="h-[100px] w-[100px] rounded-lg overflow-hidden bg-gray-100 flex items-center justify-center">
               {employee.avatarUrl ? (
                 <img src={employee.avatarUrl} alt={employee.name} className="h-full w-full object-cover" />
               ) : (
@@ -114,13 +134,15 @@ const EmployeeDetails: React.FC = () => {
               )}
             </div>
             <div className="text-left">
-              <div className="text-[26px] font-semibold text-[#16151C] leading-[36px]">
+              <div className="text-[24px] font-semibold text-[#16151C] mb-3">
                 {employee.name}
               </div>
-              <div className="text-[18px] font-normal text-[#16151C] leading-[26px]">
+              <div className="flex items-center text-[18px] font-light text-[#16151C] leading-[26px] gap-2">
+                <img src="/images/briefcase.svg" alt="Designation" className="w-[24px] h-[24px] opacity-70" />
                 {employee.designation}
               </div>
-              <div className="text-[18px] font-normal text-[#16151C] leading-[26px]">
+              <div className="flex items-center text-[18px] font-light text-[#16151C] leading-[26px] gap-2">
+                <img src="/images/gmail.svg" alt="Email" className="w-[24px] h-[24px] opacity-70" />
                 {employee.email}
               </div>
             </div>
@@ -134,8 +156,8 @@ const EmployeeDetails: React.FC = () => {
                 Edit Profile
               </span>
             }
-            style={{ backgroundColor: "#7152F3", color: "white" }}
-            className="px-5 py-2.5 mt-4 md:mt-0 rounded-lg hover:bg-[#5e44d1]"
+            style={{ backgroundColor: "#7152F3", color: "white", marginTop: "56px" }}
+            className="px-5 py-2.5 mt-24 md:mt-2 rounded-lg hover:bg-[#5e44d1]"
             onClick={() => navigate(`/add-new-employee?edit=${employee.id}`)}
           />
         </div>
@@ -147,47 +169,33 @@ const EmployeeDetails: React.FC = () => {
           </div>
 
           <div className="flex-1 p-6">
-            {leftActive === "profile" && (
-              <div className="border-b border-gray-100 flex space-x-10 mb-6 overflow-x-auto">
-                {tabs.map((tab) => {
-                  const icons: Record<string, { default: string; active: string }> = {
-                    personal: { default: "/images/person.png", active: "/images/person-active.png" },
-                    professional: { default: "/images/gender.png", active: "/images/gender.png" },
-                    documents: { default: "/images/document-text.png", active: "/images/document-text-active.png" },
-                    access: { default: "/images/lock.png", active: "/images/lock-active.png" },
-                  };
-
-                  const isActive = activeTab === tab.key;
-                  const icon = isActive ? icons[tab.key].active : icons[tab.key].default;
-
-                  return (
-                    <button
-                      key={tab.key}
-                      onClick={() => setActiveTab(tab.key)}
-                      className={`pb-3 flex items-center gap-2 text-[16px] font-normal leading-[24px] transition ${
-                        isActive ? "text-[#7B61FF] border-b-2 border-[#7B61FF]" : "text-[#16151C]"
-                      }`}
-                    >
-                      <img src={icon} alt={tab.label} className="w-5 h-5" />
-                      {tab.label}
-                    </button>
-                  );
-                })}
-              </div>
-            )}
+            {/* Tabs */}
+            <div className="border-b border-gray-100 flex space-x-8 mb-6 overflow-x-auto">
+              {tabs.map((tab) => (
+                <button
+                  key={tab.key}
+                  onClick={() => setActiveTab(tab.key)}
+                  className={`flex items-center gap-2 pb-3 text-[14px] font-medium whitespace-nowrap ${
+                    activeTab === tab.key
+                      ? "text-[#7152F3] border-b-2 border-[#7152F3] font-semibold text-[16px]"
+                      : "text-[#16151C] font-light text-[16px]"
+                  }`}
+                >
+                  <img 
+                    src={activeTab === tab.key ? tab.activeIcon : tab.icon} 
+                    alt={tab.label} 
+                    className="w-[24px] h-[24px]" 
+                  />
+                  {tab.label}
+                </button>
+              ))}
+            </div>
 
             <div>
-              {leftActive === "profile" && (
-                <>
-                  {activeTab === "personal" && <PersonalInfo isEditing={false} />}
-                  {activeTab === "professional" && <ProfessionalInfo isEditing={false} />}
-                  {activeTab === "documents" && <Documents isEditing={false} />}
-                  {activeTab === "access" && <AccountAccess isEditing={false} />}
-                </>
-              )}
-              {leftActive === "attendance" && <div className="text-gray-500 text-center py-10 text-[16px]">Attendance section coming soon...</div>}
-              {leftActive === "projects" && <div className="text-gray-500 text-center py-10 text-[16px]">Projects section coming soon...</div>}
-              {leftActive === "leave" && <div className="text-gray-500 text-center py-10 text-[16px]">Leave section coming soon...</div>}
+              {activeTab === "personal" && <PersonalInfo isEditing={false} />}
+              {activeTab === "professional" && <ProfessionalInfo isEditing={false} />}
+              {activeTab === "documents" && <Documents isEditing={false} />}
+              {activeTab === "access" && <AccountAccess isEditing={false} />}
             </div>
           </div>
         </div>

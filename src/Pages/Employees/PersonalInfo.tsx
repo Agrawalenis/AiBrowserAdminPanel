@@ -21,7 +21,7 @@ export default function PersonalInfo({ isEditing }: Props) {
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-5 font-['Lexend']">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-5">
       {Object.entries(info).map(([key, value]) => (
         <div
           key={key}
@@ -29,7 +29,7 @@ export default function PersonalInfo({ isEditing }: Props) {
           style={{ borderColor: "#A2A1A81A" }}
         >
           {/* Label / Key */}
-          <label className="block text-[14px] text-[#A2A1A8] capitalize mb-1">
+          <label className="block text-[14px] text-[#A2A1A8] capitalize mb-1 font-light">
             {key.replace(/([A-Z])/g, " $1")}
           </label>
 
@@ -37,10 +37,10 @@ export default function PersonalInfo({ isEditing }: Props) {
           {isEditing ? (
             <input
               defaultValue={value}
-              className="w-full border border-[#D9D9D9] rounded-md px-3 py-2 text-[#16151C] text-[16px] focus:outline-none focus:ring-2 focus:ring-[#7152F3]"
+              className="w-full border border-[#D9D9D9] rounded-md px-3 py-2 text-[#16151C] text-[16px]  font-light focus:outline-none focus:ring-2 focus:ring-[#7152F3]"
             />
           ) : (
-            <p className="text-[16px] text-[#16151C] font-medium">{value}</p>
+            <p className="text-[16px] text-[#16151C] font-light">{value}</p>
           )}
         </div>
       ))}

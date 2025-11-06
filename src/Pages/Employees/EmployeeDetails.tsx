@@ -100,7 +100,7 @@ const EmployeeDetails: React.FC = () => {
                   onClick={() => setActiveTab(tab.key)}
                   className={`pb-3 text-[14px] font-medium whitespace-nowrap ${
                     activeTab === tab.key
-                      ? "text-[#7B61FF] border-b-2 border-[#7B61FF]"
+                      ? "text-[#7152F3] border-b-2 border-[#7152F3]"
                       : "text-[#A2A1A8]"
                   }`}
                 >
@@ -111,10 +111,10 @@ const EmployeeDetails: React.FC = () => {
 
             {/* Dynamic Section */}
             <div>
-              {activeTab === "personal" && <PersonalInfo />}
-              {activeTab === "professional" && <ProfessionalInfo />}
-              {activeTab === "documents" && <Documents />}
-              {activeTab === "access" && <AccountAccess />}
+              {activeTab === "personal" && <PersonalInfo isEditing={false} />}
+              {activeTab === "professional" && <ProfessionalInfo isEditing={false} />}
+              {activeTab === "documents" && <Documents isEditing={false} />}
+              {activeTab === "access" && <AccountAccess isEditing={false} />}
             </div>
           </div>
         </div>

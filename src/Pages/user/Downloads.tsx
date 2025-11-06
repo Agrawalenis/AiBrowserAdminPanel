@@ -185,8 +185,8 @@ const Downloads: React.FC<DownloadsProps> = () => {
                   <table className="w-full text-sm text-left text-gray-600">
                     <thead className="sticky top-0 z-10 bg-white">
                       <tr className=" font-light text-base leading-6 text-[#A2A1A8] tracking-normal">
-                        <th className="pr-1 pl-2 py-3 w-[150px] text-left">Date</th>
-                        <th className="px-0 py-3 text-left">Website</th>
+                        <th className="pr-1 pl-2 py-3 w-[150px] text-left font-light text-base leading-6 text-[#A2A1A8] tracking-normal">Date</th>
+                        <th className="px-2 py-3 text-left font-light text-base leading-6 text-[#A2A1A8] tracking-normal">Website</th>
                         <th className="px-9 py-3 text-right font-light text-base leading-6 text-[#A2A1A8] tracking-normal">Status</th>
                       </tr>
                     </thead>
@@ -202,24 +202,24 @@ const Downloads: React.FC<DownloadsProps> = () => {
                             - {' '} <span className="font-light text-[#16151C] cursor-pointer"> {item.website}</span>
                           </td>
                           <td className="px-4 py-3 text-right">
-                            <div className="flex justify-end">
+                            <div className="flex justify-end gap-[10px]">
                               <button
                                 onClick={() => console.log('View', item.id)}
-                                className="w-[24px] h-[24px] flex items-center justify-center rounded hover:bg-gray-100 transition"
+                                className="flex items-center justify-center rounded hover:bg-gray-100 transition"
                               >
-                                <img src="/images/view.png" alt="View" className="w-4 h-4" />
+                                <img src="/images/view.png" alt="View" className="w-[24px] h-[24px]" />
                               </button>
                               <button
                                 onClick={() => console.log('Edit', item.id)}
-                                className="w-[24px] h-[24px] flex items-center justify-center rounded hover:bg-gray-100 transition"
+                                className="flex items-center justify-center rounded hover:bg-gray-100 transition"
                               >
-                                <img src="/images/edit.png" alt="Edit" className="w-4 h-4" />
+                                <img src="/images/edit.png" alt="Edit" className="w-[24px] h-[24px]" />
                               </button>
                               <button
                                 onClick={() => console.log('Delete', item.id)}
-                                className="w-[24px] h-[24px] flex items-center justify-center rounded hover:bg-gray-100 transition"
+                                className="flex items-center justify-center rounded hover:bg-gray-100 transition"
                               >
-                                <img src="/images/trash.png" alt="Delete" className="w-4 h-4" />
+                                <img src="/images/trash.png" alt="Delete" className="w-[24px] h-[24px]" />
                               </button>
                             </div>
                           </td>

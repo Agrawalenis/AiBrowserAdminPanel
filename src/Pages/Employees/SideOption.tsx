@@ -42,7 +42,7 @@ const SideOption: React.FC<SideOptionProps> = ({ active, onChange }) => {
             <button
               key={it.id}
               onClick={() => onChange(it.id)}
-              className={`w-full flex items-center gap-3 justify-start px-4 py-2.5 rounded-lg text-[14px] font-light transition-all duration-200
+              className={`w-full flex items-center gap-3 justify-start px-4 py-3 rounded-lg text-[16px] font-light transition-all duration-200
                 ${
                   isActive
                     ? "bg-[#7152F3] text-white shadow-sm"

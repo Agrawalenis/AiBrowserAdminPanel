@@ -1,5 +1,5 @@
 import React from "react";
-import { Eye, Download } from "lucide-react";
+import { Eye } from "lucide-react";
 
 interface Props {
   isEditing: boolean;
@@ -28,20 +28,14 @@ export default function Documents({ isEditing }: Props) {
             {doc}
           </span>
 
-          {/* Action buttons */}
+          {/* Static icons (View + Download) */}
           <div className="flex gap-3 items-center">
-            <button
-              className="text-[#16151C] hover:text-[#7152F3] transition"
-              title="View Document"
-            >
-              <Eye className="w-5 h-5" />
-            </button>
-            <button
-              className="text-[#16151C] hover:text-[#7152F3] transition"
-              title="Download Document"
-            >
-              <Download className="w-5 h-5" />
-            </button>
+            <Eye className="w-5 h-5 text-[#16151C]" />
+            <img
+              src="/images/download.png"
+              alt="Download"
+              className="w-5 h-5"
+            />
           </div>
         </div>
       ))}

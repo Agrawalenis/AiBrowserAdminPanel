@@ -99,7 +99,7 @@ const AllUsers: React.FC<AllUsersProps> = ({ onMount }) => {
             }}
             title="Edit"
           >
-            <img src="/images/edit.png" className="w-5 h-5" alt="Edit" />
+            <img src="/images/edit.png" className="w-5 h-5 invert" alt="Edit" />
           </button>
           <button 
             className="font-[Lexend] text-[#16151C] hover:text-gray-700 p-1 rounded-full hover:bg-gray-100"

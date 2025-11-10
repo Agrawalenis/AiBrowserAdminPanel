@@ -79,15 +79,17 @@ const Downloads: React.FC<DownloadsProps> = () => {
 
   return (
     <>
-      <Topbar 
-        title={
-          <div className="w-[140px] h-[30px] font-semibold text-[20px] leading-6 text-[#16151C]">
-            User Detail
-          </div>
-        }
-        subtitle="User All Information"
-        subtitleClassName="w-[168px] h-[22px] font-light text-[14px] leading-6 text-[#9CA3AF]"
-      />
+      <div className="pt-10">
+        <Topbar 
+          title={
+            <div className="w-[140px] h-[30px] font-semibold text-[20px] leading-6 text-[#16151C]">
+              User Detail
+            </div>
+          }
+          subtitle="User All Information"
+          subtitleClassName="w-[168px] h-[22px] font-light text-[14px] leading-6 text-[#9CA3AF]"
+        />
+      </div>
 
       {/* Main Content Area */}
       <div className="flex-1 overflow-auto p-20 pt-12 pb-2 pl-1 pr-6">
@@ -95,7 +97,7 @@ const Downloads: React.FC<DownloadsProps> = () => {
         {/* <div className="w-full h-full border-2 border-[#A2A1A833] rounded-lg p-4 px-0"> */}
 
           {/* Inner square container */}
-          <div className="relative left-1 w-full  border-2 border-[#A2A1A833] rounded">
+          <div className="relative left-1 w-full  border-2 border-[#A2A1A833] rounded-[10px]">
             {/* Profile Card */}
             <div className="flex justify-between items-center p-4 border-b border-gray-200">
                 <div className="flex items-center gap-4">
@@ -121,7 +123,7 @@ const Downloads: React.FC<DownloadsProps> = () => {
                   onClick={() => console.log('Edit Profile Clicked')}
                   className="flex items-center gap-2 bg-[#7152F3] hover:bg-[#6944F5] text-white text-sm font-medium px-5 py-2.5 rounded-[10px] transition mt-8"
                 >
-                  <img src="/images/edit.png" alt="Edit" className="w-[24px] h-[24px] invert" />
+                  <img src="/images/edit.png" alt="Edit" className="w-[24px] h-[24px]" />
                   <span>Edit Profile</span>
                 </button>
               </div>
@@ -130,7 +132,7 @@ const Downloads: React.FC<DownloadsProps> = () => {
               <div className="flex flex-row p-6 border-t border-[#A2A1A833]">
                 {/* Profile Sidebar */}
                 <div className="w-[242px] h-[280px] pr-6 border-[#A2A1A833]">
-                  <div className="flex flex-col bg-white rounded-md border border-gray-200 overflow-hidden space-y-2">
+                  <div className="flex flex-col bg-white rounded-md border border-gray-200 overflow-hidden space-y-1">
                     {[
                       { id: 'profile', label: 'Profile', icon: '/images/person.png' },
                       { id: 'activity', label: 'Daily Activity', icon: '/images/calendar-check.png' },
@@ -174,7 +176,7 @@ const Downloads: React.FC<DownloadsProps> = () => {
 
                 {/* Scrollable Content */}
               <div className="flex-1 rounded-lg max-h-[420px] overflow-y-auto 
-                [&::-webkit-scrollbar]:w-2 relative left-2
+                [&::-webkit-scrollbar]:w-[5px] relative left-2
                 [&::-webkit-scrollbar-thumb]:bg-[#7152F3] 
                 [&::-webkit-scrollbar-track]:bg-gray-100
                 [&::-webkit-scrollbar-thumb]:rounded-full
@@ -213,7 +215,7 @@ const Downloads: React.FC<DownloadsProps> = () => {
                                 onClick={() => console.log('Edit', item.id)}
                                 className="flex items-center justify-center rounded hover:bg-gray-100 transition"
                               >
-                                <img src="/images/edit.png" alt="Edit" className="w-[24px] h-[24px]" />
+                                <img src="/images/edit.png" alt="Edit" className="w-[24px] h-[24px] invert" />
                               </button>
                               <button
                                 onClick={() => console.log('Delete', item.id)}

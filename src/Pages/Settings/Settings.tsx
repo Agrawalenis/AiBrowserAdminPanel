@@ -67,7 +67,7 @@ const Settings: React.FC<SettingsProps> = ({ onMount }) => {
 
   return (
     <div className="w-full flex flex-col bg-white">
-      <div className="mb-2">
+      <div className="mb-2 mt-6">
         <Topbar
           title={
             <div className="font-['Lexend'] font-light text-[16px] leading-6 text-[#16151C]">

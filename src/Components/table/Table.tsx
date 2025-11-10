@@ -76,7 +76,7 @@ function Table<T>({
 
   return (
     <div className="w-full">
-  <div className="overflow-x-auto w-full pl-4 pr-4">
+  <div className="overflow-x-auto w-full pl-4 pr-7">
     <table className="w-full border-collapse table-fixed">
       <colgroup>
         <col style={{ width: "5%" }} />

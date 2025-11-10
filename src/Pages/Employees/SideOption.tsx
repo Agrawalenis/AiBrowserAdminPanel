@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface SideOptionProps {
   active: string;
@@ -7,28 +7,53 @@ interface SideOptionProps {
 
 const SideOption: React.FC<SideOptionProps> = ({ active, onChange }) => {
   const items = [
-    { id: 'profile', label: 'Profile' },
-    { id: 'attendance', label: 'Attendance' },
-    { id: 'projects', label: 'Projects' },
-    { id: 'leave', label: 'Leave' },
+    {
+      id: "profile",
+      label: "Profile",
+      icon: "/images/person.png",
+      activeIcon: "/images/pfp.png",
+    },
+    {
+      id: "attendance",
+      label: "Attendance",
+      icon: "/images/calendar-check.png",
+      activeIcon: "/images/calendar-check.png",
+    },
+    {
+      id: "projects",
+      label: "Projects",
+      icon: "/images/Projects.png",
+      activeIcon: "/images/Projects.png",
+    },
+    {
+      id: "leave",
+      label: "Leave",
+      icon: "/images/Leave.png",
+      activeIcon: "/images/Leave.png",
+    },
   ];
 
   return (
-    <aside className="w-full md:w-[200px]">
-      <div className="space-y-1">
+    <aside className="w-full md:w-[200px] font-[Lexend]">
+      <div className="border border-[#E5E7EB] rounded-xl bg-white p-2 space-y-2">
         {items.map((it) => {
           const isActive = active === it.id;
           return (
             <button
               key={it.id}
               onClick={() => onChange(it.id)}
-              className={`w-full flex items-center px-4 py-2.5 rounded-md text-[14px] font-medium transition-colors font-['Lexend']
+              className={`w-full flex items-center gap-3 justify-start px-4 py-2.5 rounded-lg text-[14px] font-light transition-all duration-200
                 ${
                   isActive
-                    ? 'bg-[#7B61FF] text-white shadow-sm'
-                    : 'text-[#6B6B6B] hover:bg-gray-50'
+                    ? "bg-[#7152F3] text-white shadow-sm"
+                    : "bg-white text-[#16151C] hover:bg-[#F9FAFB]"
                 }`}
             >
+              <img
+                src={isActive ? it.activeIcon : it.icon}
+                alt={it.label}
+                className="w-5 h-5 object-contain"
+              />
               <span>{it.label}</span>
             </button>
           );

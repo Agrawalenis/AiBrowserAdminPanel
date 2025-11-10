@@ -215,7 +215,7 @@ const AllEmployees: React.FC<AllEmployeesProps> = ({ onMount }) => {
                   <span className="text-base leading-6 text-white text-[16px] font-medium">Add New Employee</span>
                 </div>
               }
-              style={{ backgroundColor: '#7251F4', color: 'white' }}
+              style={{ backgroundColor: 'hsla(252, 88%, 64%, 1.00)', color: 'white' }}
               className="px-4 py-2 rounded-lg text-sm hover:bg-[#5e44d1]"
               onClick={() => navigate('/add-new-employee')}
             />

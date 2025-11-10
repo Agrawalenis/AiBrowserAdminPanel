@@ -13,19 +13,27 @@ export default function AccountAccess({ isEditing }: Props) {
   };
 
   return (
-    <div className="grid grid-cols-2 gap-6 text-sm text-gray-800">
-      {Object.entries(info).map(([key, value]) => (
-        <div key={key}>
-          <label className="block text-gray-500 capitalize mb-1">
+    <div className="grid grid-cols-1 md:grid-cols-2 border-t border-[#A2A1A81A]">
+      {Object.entries(info).map(([key, value], index) => (
+        <div
+          key={key}
+          className={`py-4 px-2 border-b border-[#A2A1A81A] ${
+            index % 2 === 0 ? "md:pr-6" : "md:pl-6"
+          }`}
+        >
+          <label className="block text-[14px] text-[#A2A1A8] capitalize mb-1 font-['Lexend']">
             {key.replace(/([A-Z])/g, " $1")}
           </label>
+
           {isEditing ? (
             <input
               defaultValue={value}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="w-full border border-[#A2A1A81A] rounded-lg px-3 py-2 text-[16px] text-[#16151C] focus:outline-none focus:ring-2 focus:ring-[#7152F3]"
             />
           ) : (
-            <p className="font-medium">{value}</p>
+            <p className="text-[16px] text-[#16151C] font-medium font-['Lexend']">
+              {value}
+            </p>
           )}
         </div>
       ))}

@@ -196,10 +196,10 @@ const AddNewEmployee: React.FC<AddNewEmployeeProps> = ({ onMount }) => {
         {/* Content Section */}
         <div className="h-fit">
           <div className="p-6 overflow-auto">
-            {currentTab === 'personal' && <PersonalInfo />}
-            {currentTab === 'professional' && <ProfessionalInfo />}
-            {currentTab === 'documents' && <Documents />}
-            {currentTab === 'account' && <AccountAccess />}
+            {currentTab === 'personal' && <PersonalInfo isEditing={false} />}
+            {currentTab === 'professional' && <ProfessionalInfo isEditing={false} />}
+            {currentTab === 'documents' && <Documents isEditing={false} />}
+            {currentTab === 'account' && <AccountAccess isEditing={false} />}
           </div>
         </div>
       </div>

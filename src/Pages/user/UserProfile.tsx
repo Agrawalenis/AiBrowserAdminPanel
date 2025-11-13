@@ -121,12 +121,12 @@ const UserProfile: React.FC<UserProfileProps> = () => {
     <>
       <Topbar 
         title={
-          <div className="w-[140px] font-semibold text-[20px] leading-6 text-[#16151C]">
+          <div className="w-[140px] h-[30px] font-semibold text-[20px] leading-6 text-[#16151C]">
             All Employees
           </div>
         }
         subtitle="All Employee Information"
-        subtitleClassName="font-light text-[14px] leading-6 text-[#9CA3AF]"
+        subtitleClassName="w-[168px] h-[22px] font-light text-[14px] leading-6 text-[#9CA3AF]"
       />
 
       {/* Main Content Area */}
@@ -142,15 +142,15 @@ const UserProfile: React.FC<UserProfileProps> = () => {
                   <img
                     src={user.avatar}
                     alt={user.name}
-                    className="w-20 h-20 rounded-lg object-cover"
+                    className="w-[100px] h-[100px] rounded-[10px] object-cover"
                   />
-                  <div className="flex flex-col gap-2">
+                  <div className="flex flex-col gap-[8px]">
                     <h2 className="text-xl font-semibold text-gray-900">{user.name}</h2>
-                    <div className="flex items-center gap-2 text-sm text-gray-500">
+                    <div className="flex items-center gap-[10px] text-sm text-gray-500">
                       <img src="/images/gender.png" alt="Gender" className="w-[24px] h-[24px] opacity-60" />
                       <span>{user.gender}</span>
                     </div>
-                    <div className="flex items-center gap-2 text-sm text-gray-500">
+                    <div className="flex items-center gap-[10px] text-sm text-gray-500">
                       <img src="/images/gmail.png" alt="Email" className="w-[24px] h-[24px] opacity-60" />
                       <span>{user.email}</span>
                     </div>
@@ -159,7 +159,7 @@ const UserProfile: React.FC<UserProfileProps> = () => {
 
                 <button
                   onClick={() => console.log('Edit Profile Clicked')}
-                  className="flex items-center gap-2 bg-[#7152F3] hover:bg-[#6944F5] text-white text-sm font-medium px-5 py-2.5 rounded-[10px] transition"
+                  className="flex items-center gap-2 bg-[#7152F3] hover:bg-[#6944F5] text-white text-sm font-medium px-5 py-2.5 rounded-[10px] transition w-[156px] h-[50px]"
                 >
                   <img src="/images/edit.png" alt="Edit" className="w-[24px] h-[24px] invert" />
                   <span>Edit Profile</span>
@@ -197,7 +197,7 @@ const UserProfile: React.FC<UserProfileProps> = () => {
                           ${activeTab === item.id 
                             ? 'bg-[#7152F3] text-white rounded-[10px]' 
                             : 'text-[#16151C] hover:bg-gray-50'} 
-                          font-['Lexend'] font-light text-base leading-6`}
+                          font-light text-base leading-6`}
                       >
                         <img 
                           src={item.icon} 

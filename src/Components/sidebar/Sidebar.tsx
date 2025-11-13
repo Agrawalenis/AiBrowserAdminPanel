@@ -13,19 +13,25 @@ const Sidebar: React.FC<SidebarProps> = ({ setActivePage, activePage }) => {
   const location = useLocation();
   const [isDarkMode, setIsDarkMode] = React.useState(false);
 
-  const navLinks = [
-    { icon: "/images/apps.png", label: "Dashboard", path: "/dashboard" },
-    { icon: "/images/user.png", label: "All Users", path: "/" },
-    { icon: "/images/people.png", label: "All Websites", path: "/websites" },
-    { icon: "/images/location.png", label: "Trending Topics", path: "/trending" },
-    { icon: "/images/upcoming.png", label: "Upcoming Modules", path: "/upcoming" },
-    { icon: "/images/people.png", label: "All Employees", path: "/all-employees" },
-    { icon: "/images/community.png", label: "All Departments", path: "/departments" },
-    { icon: "/images/calendar-check.png", label: "Attendance", path: "/attendance" },
-    { icon: "/images/coin-dollar.png", label: "Payroll", path: "/payroll" },
-    { icon: "/images/briefcase.png", label: "Jobs", path: "/jobs" },
-    { icon: "/images/setting.png", label: "Settings", path: "/settings" },
-  ] as const;
+   const navLinks = [
+    { name: "Dashboard", path: "/dashboard", icon: "apps" },
+    { name: "All Users", path: "/", icon: "user" },
+    { name: "All Websites", path: "/websites", icon: "user" },
+    { name: "Trending Topics", path: "/trending", icon: "location" },
+    { name: "Upcoming Modules", path: "/upcoming", icon: "upcoming" },
+    { name: "All Employees", path: "/all-employees", icon: "user" },
+    { name: "All Departments", path: "/departments", icon: "community" },
+    { name: "Attendance", path: "/attendance", icon: "calendar-check" },
+    { name: "Payroll", path: "/payroll", icon: "coin-dollar" },
+    { name: "Jobs", path: "/jobs", icon: "briefcase" },
+    { name: "Settings", path: "/settings", icon: "setting" },
+  ].map((link) => ({
+    ...link,
+    icon: {
+      active: `/images/${link.icon}-active.svg`,
+      inactive: `/images/${link.icon}.svg`,
+    },
+  }));
 
   const handleNavClick = (path: string, label: string) => {
     setActivePage(label);
@@ -69,7 +75,7 @@ const Sidebar: React.FC<SidebarProps> = ({ setActivePage, activePage }) => {
           return (
             <div
               key={idx}
-              onClick={() => handleNavClick(link.path, link.label)}
+              onClick={() => handleNavClick(link.path, link.name)}
               className={`relative transition-all duration-200 flex items-center cursor-pointer pl-4 hover:bg-gray-100 text-gray-700 whitespace-nowrap
                 ${isActive ? 'bg-[#7152F30D]' : ''}`}
               style={isActive ? {
@@ -88,11 +94,11 @@ const Sidebar: React.FC<SidebarProps> = ({ setActivePage, activePage }) => {
               <div className="relative z-10 flex items-center w-full">
                 <div className="relative w-full">
                   <NavItem
-                    icon={link.icon}
-                    label={link.label}
-                    isActive={isActive}
-                    dark={isDarkMode}
-                  />
+                  icon={link.icon}
+                  label={link.name}
+                  isActive={isActive}
+                  dark={isDarkMode}
+                />
                 </div>
               </div>
             </div>

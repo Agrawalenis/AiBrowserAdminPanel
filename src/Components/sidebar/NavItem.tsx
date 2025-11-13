@@ -1,53 +1,61 @@
 import React from "react";
+import "../../index.css";
 
 interface NavItemProps {
-  icon: string;
+  icon: {
+    active: string;
+    inactive: string;
+  };
   label: string;
   dark: boolean;
   isActive?: boolean;
 }
 
 const NavItem: React.FC<NavItemProps> = ({ icon, label, dark, isActive = false }) => {
+  const iconSrc = isActive ? icon.active : icon.inactive;
+
   return (
     <div className="relative w-full">
       {isActive && (
-        <div 
+        <div
           className="absolute left-0 top-0 h-full w-[0.2rem] bg-[#7152F3] rounded-r-sm"
-          style={{
-            boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.1)'
-          }}
+          style={{ boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.1)" }}
         />
       )}
+
       <button
-        className={`flex w-full px-6 py-3 transition-all duration-200 ${
-          dark 
-            ? isActive 
-              ? 'text-white' 
-              : 'text-gray-300 hover:bg-[#2B2C2F]' 
+        className={`flex w-full px-6 py-3 items-center gap-3 transition-all duration-200 ${
+          dark
+            ? isActive
+              ? ""
+              : "text-gray-300 hover:bg-[#2B2C2F]"
             : isActive
-              ? 'text-[#7152F3] font-[Lexend,sans-serif] font-bold leading-6 tracking-normal'
-              : 'text-[#16151C] hover:bg-gray-100'
-        } font-[Lexend,sans-serif] text-base leading-6 focus:outline-none focus:ring-0 border-none`}
+            ? "text-[#7152F3] font-bold"
+            : "text-[#16151C] hover:bg-gray-100"
+        }`}
         style={{
-          outline: 'none',
-          border: 'none',
-          WebkitTapHighlightColor: 'transparent',
-          paddingLeft: isActive ? 'calc(1.5rem - 4px)' : '4rem'
+          outline: "none",
+          border: "none",
+          WebkitTapHighlightColor: "transparent",
+          paddingLeft: isActive ? "calc(1.5rem - 4px)" : "4rem",
         }}
       >
-        <div className="flex items-center">
-          <div className="relative">
-            <img 
-              src={icon} 
-              alt={label} 
-              className="w-[24px] h-[24px] mr-3 flex-shrink-0"
-              style={{
-                filter: isActive ? 'hue-rotate(720deg) saturate(30)' : 'brightness(0)'
-              }}
-            />
-          </div>
-          <span className={`${isActive ? 'text-[#7152F3] font-[Lexend,sans-serif] font-bold leading-6 text-[16px]' : 'text-[#16151C]'}`}>{label}</span>
-        </div>
+        <img
+          src={iconSrc}
+          alt={label}
+          className="w-6 h-6 transition-all duration-200"
+          draggable={false}
+        />
+
+        <span
+          className={`${
+            isActive
+              ? "text-[#7152F3] font-[Lexend,sans-serif] font-bold leading-6 text-[16px]"
+              : "text-[#16151C]"
+          }`}
+        >
+          {label}
+        </span>
       </button>
     </div>
   );

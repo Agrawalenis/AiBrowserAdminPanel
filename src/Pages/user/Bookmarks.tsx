@@ -79,7 +79,7 @@ const Bookmarks: React.FC<BookmarksProps> = () => {
 
   return (
     <>
-      <div className="pt-10">
+      <div className="pt-2 pb-4">
         <Topbar 
           title={
             <div className="w-[140px] h-[30px] font-semibold text-[20px] leading-6 text-[#16151C]">
@@ -92,14 +92,14 @@ const Bookmarks: React.FC<BookmarksProps> = () => {
       </div>
 
       {/* Main Content Area */}
-      <div className="flex-1 overflow-auto pl-1 pr-6 pt-12">
+      <div className="flex-1 overflow-auto pl-1 pr-6 pt-6">
         {/* Outer square container */}
         {/* <div className="w-full h-full border-2 border-[#A2A1A833] rounded-lg p-4 px-0"> */}
 
           {/* Inner square container */}
           <div className="relative left-1 w-full  border-2 border-[#A2A1A833] rounded-[15px]">
             {/* Profile Card */}
-            <div className="flex justify-between items-center p-4 border-b border-gray-200">
+            <div className="flex justify-between items-center p-8 border-b border-gray-200">
                 <div className="flex items-center gap-4">
                   <img
                     src={user.avatar}
@@ -161,7 +161,7 @@ const Bookmarks: React.FC<BookmarksProps> = () => {
                           ${activeTab === item.id 
                             ? 'bg-[#7152F3] text-white rounded-[10px]' 
                             : 'text-[#16151C] hover:bg-gray-50'} 
-                          font-['Lexend'] font-light text-base leading-6`}
+                            font-light text-base leading-6`}
                       >
                         <img 
                           src={item.icon} 
@@ -186,7 +186,7 @@ const Bookmarks: React.FC<BookmarksProps> = () => {
                 ) : (
                   <table className="w-full text-sm text-left text-gray-600">
                     <thead className="sticky top-0 z-10 bg-white">
-                      <tr className="font-['Lexend'] font-light text-base leading-6 text-[#A2A1A8] tracking-normal">
+                      <tr className="font-light text-base leading-6 text-[#A2A1A8] tracking-normal">
                         <th className="pr-1 pl-2 py-3 w-[150px] text-left font-light text-[16px]">Date</th>
                         <th className="px-0 py-3 text-left font-light text-[16px]">Website</th>
                         <th className="px-16 py-3 text-right font-light text-[16px]">Status</th>
@@ -195,7 +195,7 @@ const Bookmarks: React.FC<BookmarksProps> = () => {
                     <tbody>
                       {paginatedActivities.map((item) => (
                         <tr key={item.id} className="border-b border-t hover:bg-gray-50">
-                          <td className="px-2 py-3 font-['Lexend'] font-light text-base leading-6 text-[#16151C] tracking-normal">{formatDate(item.date)}</td>
+                          <td className="px-2 py-3 font-light text-base leading-6 text-[#16151C] tracking-normal">{formatDate(item.date)}</td>
                           <td className="px-2 py-3 flex gap-[20px]">
                             <img src={item.image} alt="" className="w-5 h-5" />
                             <span className="font-medium text-[#16151C] cursor-pointer">

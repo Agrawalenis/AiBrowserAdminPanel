@@ -41,7 +41,7 @@ const Pagination: React.FC<PaginationProps> = ({
       {/* Left: Number of users with square border */}
       <div className="flex items-center pl-4">
         <span className="text-sm text-[#A2A1A8] mr-2">Showing</span>
-        <div className="w-[76px] h-[46px] border border-[#A2A1A833] bg-white rounded-[10px] flex items-center justify-between px-3 text-sm font-medium">
+        <div className="w-[76px] h-[46px] border border-[#A2A1A833] bg-white rounded-[10px] flex items-center justify-between px-3 text-sm">
           <span>{itemsPerPage}</span>
           <ChevronDown className="h-4 w-4 text-[#A2A1A8]" />
         </div>
@@ -57,9 +57,9 @@ const Pagination: React.FC<PaginationProps> = ({
         <button
           onClick={() => onPageChange(currentPage - 1)}
           disabled={currentPage === 1}
-          className={`p-1.5 rounded-md ${currentPage === 1 ? 'text-[#A2A1A8] cursor-not-allowed' : 'text-[#A2A1A8] hover:bg-[#A2A1A833]'}`}
+          className={`p-1.5 rounded-md ${currentPage === 1 ? 'text-[#16151C] cursor-not-allowed' : 'text-[#A2A1A8] hover:bg-[#A2A1A833]'}`}
         >
-          <ChevronLeft className="h-4 w-4" />
+          <ChevronLeft className="h-4 w-4 text-black-100" />
         </button>
         
         {getPageNumbers().map((page) => (

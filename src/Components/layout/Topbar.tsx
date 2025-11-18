@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 interface TopbarProps {
   title: React.ReactNode;
@@ -25,22 +26,24 @@ const Topbar: React.FC<TopbarProps> = ({ title, subtitle }) => {
           <input
             type="text"
             placeholder="Search"
-            className="w-[261px] h-[50px] pl-11 pr-4 py-2 font-['Lexend'] font-light text-[16px] rounded-lg leading-6 text-[rgba(22,21,28,0.2)] bg-white border-2 border-[#A2A1A81A] focus:outline-none focus:ring-0"
+            className="w-[261px] h-[50px] pl-11 pr-4 py-2 font-light text-[16px] rounded-lg leading-6 text-[rgba(22,21,28,0.2)] bg-white border-2 border-[#A2A1A81A] focus:outline-none focus:ring-0"
           />
         </div>
 
         {/* Notifications */}
         <div className="relative">
+          <Link to="/notifications">
           <button 
             className="w-[50px] h-[50px] flex items-center justify-center bg-[#A2A1A81A] rounded-lg hover:bg-gray-50 focus:outline-none"
           >
             <img src="/images/notification.png" className="w-[24px] h-[24px]" alt="Notifications" />
           </button>
+          </Link>
         </div>
 
         {/* User Profile */}
         <div className="flex items-center space-x-3">
-          <div className="flex items-center space-x-3 border-2 border-[#A2A1A81A] rounded-lg px-4 py-1.5 h-[50px]">
+          <div className="flex items-center space-x-1 border-2 border-[#A2A1A81A] rounded-lg px-4 py-1.5 h-[50px]">
             <div className="relative">
               <img 
                 className="w-[40px] h-[40px] object-cover rounded-lg" 
@@ -49,10 +52,10 @@ const Topbar: React.FC<TopbarProps> = ({ title, subtitle }) => {
               />
             </div>
             <div className="text-left">
-              <p className="font-['Lexend'] font-semibold text-[16px] leading-6 text-[#16151C]">
+              <p className="font-Lexend font-semibold text-[16px] leading-6 text-[#16151C]">
                 Robert Allen
               </p>
-              <p className="font-['Lexend'] font-light text-[12px] leading-[18px] text-[#A2A1A8]">
+              <p className="font-Lexend font-light text-[12px] leading-[18px] text-[#A2A1A8]">
                 HR Manager
               </p>
             </div>

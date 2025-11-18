@@ -1,116 +1,126 @@
 import type { Employee } from '../types';
 
 export const mockEmployees: Employee[] = [
-  { 
-    name: "John Doe", 
-    id: "356942541", 
-    department:  "Design", 
-    designation:  "UI/UX Designer", 
+  {
+    name: "John Doe",
+    id: "356942541",
+    department: "Design",
+    designation: "UI/UX Designer",
     type: "Office",
     activity: "Permanent",
     email: "john.doe@example.com",
     status: 'active',
-    avatarUrl: "https://randomuser.me/api/portraits/men/1.jpg"
+    avatarUrl: "https://randomuser.me/api/portraits/men/1.jpg",
+    role: undefined
   },
-  { 
-    name: "Jane Smith", 
-    id: "356942542", 
-    department:  "Development", 
-    designation:  "PHP Developer", 
-    type: "Office", 
+  {
+    name: "Jane Smith",
+    id: "356942542",
+    department: "Development",
+    designation: "PHP Developer",
+    type: "Office",
     activity: "Permanent",
     email: "jane.smith@example.com",
     status: 'inactive',
-    avatarUrl: "https://randomuser.me/api/portraits/women/1.jpg"
+    avatarUrl: "https://randomuser.me/api/portraits/women/1.jpg",
+    role: undefined
   },
   // 58 more mock users...
-  { 
-    name: "Robert Johnson", 
-    id: "356942543", 
-    department:  "Sales", 
-    designation:  "UI/UX Designer", 
-    type: "Remote", 
+  {
+    name: "Robert Johnson",
+    id: "356942543",
+    department: "Sales",
+    designation: "UI/UX Designer",
+    type: "Remote",
     activity: "Permanent",
     email: "robert.j@example.com",
     status: 'active',
-    avatarUrl: "https://randomuser.me/api/portraits/men/2.jpg"
+    avatarUrl: "https://randomuser.me/api/portraits/men/2.jpg",
+    role: undefined
   },
-  { 
-    name: "Emily Davis", 
-    id: "356942544", 
-    department:  "Sales",
-    designation:  "PHP Developer", 
-    type: "Office", 
+  {
+    name: "Emily Davis",
+    id: "356942544",
+    department: "Sales",
+    designation: "PHP Developer",
+    type: "Office",
     activity: "Permanent",
     email: "emily.d@example.com",
     status: 'active',
-    avatarUrl: "https://randomuser.me/api/portraits/women/2.jpg"
+    avatarUrl: "https://randomuser.me/api/portraits/women/2.jpg",
+    role: undefined
   },
-  { 
-    name: "Michael Wilson", 
-    id: "356942545", 
-    department:  "Design", 
-    designation:  "UI/UX Designer", 
-    type: "Remote", 
+  {
+    name: "Michael Wilson",
+    id: "356942545",
+    department: "Design",
+    designation: "UI/UX Designer",
+    type: "Remote",
     activity: "Permanent",
     email: "michael.w@example.com",
     status: 'inactive',
-    avatarUrl: "https://randomuser.me/api/portraits/men/3.jpg"
+    avatarUrl: "https://randomuser.me/api/portraits/men/3.jpg",
+    role: undefined
   },
-  { 
-    name: "Sarah Brown", 
-    id: "356942546", 
-    department:  "Development", 
-    designation:  "PHP Developer", 
-    type: "Office", 
+  {
+    name: "Sarah Brown",
+    id: "356942546",
+    department: "Development",
+    designation: "PHP Developer",
+    type: "Office",
     activity: "Permanent",
     email: "sarah.b@example.com",
     status: 'active',
-    avatarUrl: "https://randomuser.me/api/portraits/women/3.jpg"
+    avatarUrl: "https://randomuser.me/api/portraits/women/3.jpg",
+    role: undefined
   },
-  { 
-    name: "David Taylor", 
-    id: "356942547", 
-    department:  "Development", 
-    designation:  "UI/UX Designer", 
-    type: "Remote", 
+  {
+    name: "David Taylor",
+    id: "356942547",
+    department: "Development",
+    designation: "UI/UX Designer",
+    type: "Remote",
     activity: "Permanent",
     email: "david.t@example.com",
     status: 'active',
-    avatarUrl: "https://randomuser.me/api/portraits/men/4.jpg"
+    avatarUrl: "https://randomuser.me/api/portraits/men/4.jpg",
+    role: undefined
   },
-  { 
-    name: "Emma Martinez", 
-    id: "356942548", 
-    department:  "PM",
-    designation:  "PHP Developer", 
-    type: "Office", 
+  {
+    name: "Emma Martinez",
+    id: "356942548",
+    department: "PM",
+    designation: "PHP Developer",
+    type: "Office",
     activity: "Permanent",
     email: "emma.m@example.com",
     status: 'inactive',
-    avatarUrl: "https://randomuser.me/api/portraits/women/4.jpg"
+    avatarUrl: "https://randomuser.me/api/portraits/women/4.jpg",
+    role: undefined
   },
-  { 
-    name: "James Anderson", 
-    id: "356942549", 
-    department:  "HR", 
-    designation:  "UI/UX Designer", 
-    type: "Office", 
+  {
+    name: "James Anderson",
+    id: "356942549",
+    department: "HR",
+    designation: "UI/UX Designer",
+    type: "Office",
     activity: "Permanent",
     email: "james.a@example.com",
     status: 'active',
-    avatarUrl: "https://randomuser.me/api/portraits/men/5.jpg"
+    avatarUrl: "https://randomuser.me/api/portraits/men/5.jpg",
+    role: undefined
   },
-  { 
-    name: "Olivia Thomas", 
-    id: "1010", 
-    department:  "Development", 
-    designation:  "PHP Developer", 
-    type: "Office", 
+  {
+    name: "Olivia Thomas",
+    id: "1010",
+    department: "Development",
+    designation: "PHP Developer",
+    type: "Office",
     activity: "Permanent",
     email: "olivia.t@example.com",
     status: 'active',
-    avatarUrl: "https://randomuser.me/api/portraits/women/5.jpg"
+    avatarUrl: "https://randomuser.me/api/portraits/women/5.jpg",
+    role: undefined
   },
   // Add more users as needed...
 ];
@@ -140,7 +150,8 @@ for (let i = 11; i <= 60; i++) {
     activity,
     email,
     status,
-    avatarUrl: `https://randomuser.me/api/portraits/${designation.toLowerCase() === 'male' ? 'men' : 'women'}/${avatarNumber}.jpg`
+    avatarUrl: `https://randomuser.me/api/portraits/${designation.toLowerCase() === 'male' ? 'men' : 'women'}/${avatarNumber}.jpg`,
+    role: undefined
   });
 }
 

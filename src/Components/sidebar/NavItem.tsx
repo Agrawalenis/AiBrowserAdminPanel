@@ -40,7 +40,7 @@ const NavItem: React.FC<NavItemProps> = ({ icon, label, dark, isActive = false }
             <img 
               src={icon} 
               alt={label} 
-              className={`w-[24px] h-[24px] mr-3 flex-shrink-0 ${icon.includes('calendar-check') ? 'invert-[100%]' : ''} ${isActive ? 'opacity-100' : 'opacity-60'}`}
+              className={`w-[24px] h-[24px] mr-3 flex-shrink-0 ${icon.includes('calendar-check') ? 'invert-[100%]' : ''} ${isActive ? 'opacity-100 filter-purple' : 'opacity-60'}`}
             />
           </div>
           <span className={isActive ? 'font-medium' : ''}>{label}</span>

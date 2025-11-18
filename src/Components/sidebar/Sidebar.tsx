@@ -18,11 +18,11 @@ const Sidebar: React.FC<SidebarProps> = ({ setActivePage }) => {
     { icon: "/images/people.png", label: "All Websites", path: "/websites" },
     { icon: "/images/location.png", label: "Trending Topics", path: "/trending" },
     { icon: "/images/upcoming.png", label: "Upcoming Modules", path: "/upcoming" },
-    { icon: "/images/people.png", label: "All Employees", path: "/all-employees" },
-    { icon: "/images/community.png", label: "All Departments", path: "/departments" },
-    { icon: "/images/calendar-check.png", label: "Attendance", path: "/attendance" },
-    { icon: "/images/coin-dollar.png", label: "Payroll", path: "/payroll" },
-    { icon: "/images/briefcase.png", label: "Jobs", path: "/jobs" },
+    { icon: "/images/people.png", label: "All Employees", path: "/design-department" },
+    { icon: "/images/community.png", label: "All Departments", path: "/all-departments" },
+    { icon: "/images/calendar-check.png", label: "Attendance", path: "/all-employee-attendan" },
+    { icon: "/images/coin-dollar.png", label: "Payroll", path: "" },
+    { icon: "/images/briefcase.png", label: "Jobs", path: "/design-departmet" },
     { icon: "/images/setting.png", label: "Settings", path: "/settings" },
   ] as const;
 
@@ -69,7 +69,7 @@ const Sidebar: React.FC<SidebarProps> = ({ setActivePage }) => {
             <div
               key={idx}
               onClick={() => handleNavClick(link.path, link.label)}
-              className={`relative transition-all duration-200 flex items-center cursor-pointer pl-6 hover:bg-gray-100 text-gray-700
+              className={`transition-all duration-200 flex items-center cursor-pointer pl-3 hover:bg-gray-100 text-gray-700
                 ${isActive ? 'text-[#7152F3] font-medium' : ''}`}
               style={isActive ? {
                 background: 'linear-gradient(to right, transparent 1.5rem, #7152F30D 1.5rem, #7152F30D 100%)',

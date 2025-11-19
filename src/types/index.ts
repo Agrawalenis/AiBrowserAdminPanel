@@ -1,4 +1,5 @@
 export type UserStatus = 'active' | 'inactive';
+export type PayrollStatus = 'Completed' | 'Pending';
 
 export interface User {
   name: string;
@@ -21,6 +22,17 @@ export interface Employee {
   activity: string;
   email: string;
   status: UserStatus;
+  avatarUrl?: string;
+}
+
+export interface Payroll {
+  name: string;
+  id: string;
+  ctc: string;
+  salaryPerMonth: string;
+  deduction: string;
+  status: PayrollStatus;
+  email: string;
   avatarUrl?: string;
 }
 

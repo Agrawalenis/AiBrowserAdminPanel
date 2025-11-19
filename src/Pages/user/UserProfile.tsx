@@ -118,19 +118,21 @@ const UserProfile: React.FC<UserProfileProps> = () => {
   const paginatedActivities = allActivities.slice(startIndex, startIndex + itemsPerPage);
 
   return (
-    <>
-      <Topbar 
-        title={
-          <div className="w-[140px] h-[30px] font-semibold text-[20px] leading-6 text-[#16151C]">
-            All Employees
-          </div>
-        }
-        subtitle="All Employee Information"
-        subtitleClassName="w-[168px] h-[22px] font-light text-[14px] leading-6 text-[#9CA3AF]"
-      />
+    <div>
+      <div className="pt-10">
+        <Topbar 
+          title={
+            <div className="w-[140px] h-[30px] font-semibold text-[20px] leading-6 text-[#16151C]">
+              All Employees
+            </div>
+          }
+          subtitle="All Employee Information"
+          subtitleClassName="w-[168px] h-[22px] font-light text-[14px] leading-6 text-[#9CA3AF]"
+        />
+      </div>
 
       {/* Main Content Area */}
-      <div className="flex-1 overflow-auto p-20 pt-0 pb-2 pl-12 pr-8">
+      <div className="flex-1 overflow-auto pl-8 pr-8 pt-10">
         {/* Outer square container */}
         <div className="w-full h-full border-[1px] border-[#A2A1A833] rounded-lg p-4 px-0">
 
@@ -170,7 +172,7 @@ const UserProfile: React.FC<UserProfileProps> = () => {
               <div className="flex flex-row p-6">
                 {/* Profile Sidebar */}
                 <div className="w-[242px] h-[400px] pr-6 border-[#A2A1A833]">
-                  <div className="flex flex-col bg-white rounded-md border border-gray-200 overflow-hidden space-y-2">
+                  <div className="flex flex-col bg-white rounded-md border border-gray-200 overflow-hidden space-y-1">
                     {[
                       { id: 'profile', label: 'Profile', icon: '/images/person.png' },
                       { id: 'activity', label: 'Daily Activity', icon: '/images/calendar-check.png' },
@@ -260,7 +262,7 @@ const UserProfile: React.FC<UserProfileProps> = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

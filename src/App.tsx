@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
-import UserProfile from "./Pages/User/UserProfile";
 import Sidebar from "./Components/sidebar/Sidebar";
-import Profile from './Pages/User/Profile';
-import AllUsers from "./Pages/AllUsers/AllUsers";
 import AllEmployees from "./Pages/AllEmployees/AllEmployees";
-import Downloads from "./Pages/User/Downloads";
-import Bookmarks from "./Pages/User/Bookmarks";
-import Dashboard from "./Pages/User/Dashboard";
 import AddNewEmployee from "./Pages/AllEmployees/AddNewEmployee";
 import Jobs from "./Pages/Jobs/Jobs";
 import Settings from "./Pages/Settings/Settings";
 import EmployeeDetails from "./Pages/Employees/EmployeeDetails";
+const PayrollWrapper = React.lazy(() => import("./Pages/Payroll/Payroll"));
+import UserProfile from "./Pages/user/UserProfile";
+import AllUsers from "./Pages/allusers/AllUsers";
+import Bookmarks from "./Pages/user/Bookmarks";
+import Dashboard from "./Pages/user/Dashboard";
+import Downloads from "./Pages/user/Downloads";
+import Profile from "./Pages/user/Profile";
 
 const AppContent: React.FC = () => {
   const [activePage, setActivePage] = useState("All Users");
@@ -53,6 +54,11 @@ const AppContent: React.FC = () => {
           <Route path="/add-new-employee" element={<AddNewEmployee />} />
           <Route path="/jobs" element={<Jobs />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/payroll" element={
+            <React.Suspense fallback={<div>Loading...</div>}>
+              <PayrollWrapper />
+            </React.Suspense>
+          } />
         </Routes>
       </div>
     </div>

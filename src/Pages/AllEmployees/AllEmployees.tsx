@@ -45,7 +45,7 @@ const AllEmployees: React.FC<AllEmployeesProps> = ({ onMount }) => {
               <img 
                 src={user.avatarUrl} 
                 alt={name} 
-                className="h-full w-full object-cover"
+                className="h-[36px] w-[36px] object-cover"
               />
             ) : (
               <span className="text-xs text-gray-500">
@@ -53,34 +53,34 @@ const AllEmployees: React.FC<AllEmployeesProps> = ({ onMount }) => {
               </span>
             )}
           </div>
-          <span>{name}</span>
+          <span className="font-light text-[16px]">{name}</span>
         </div>
       )
     },
     { 
       header: 'Employee ID', 
       accessor: 'id',
-      className: 'text-[#16151C]' 
+      className: 'text-[#16151C] font-light text-[16px]' 
     },
     { 
       header: 'Department', 
       accessor: 'department',
-      className: 'text-[#16151C]' 
+      className: 'text-[#16151C] font-light text-[16px]' 
     },
     { 
       header: 'Designation', 
       accessor: 'designation',
-      className: 'text-[#16151C]' 
+      className: 'text-[#16151C] font-light text-[16px]' 
     },
     { 
       header: 'Type', 
       accessor: 'type',
-      className: 'text-[#16151C]' 
+      className: 'text-[#16151C] font-light text-[16px]' 
     },
     { 
       header: 'Status', 
       accessor: 'activity',
-      className: 'text-[#16151C]',
+      className: 'text-[#16151C] font-light text-[16px]',
       render: (value: string) => (
         <span className="inline-flex items-center justify-center px-2.5 py-1 rounded-[4px] text-xs font-medium bg-[#7152F31A] text-[#7152F3]">
           {value}
@@ -88,9 +88,8 @@ const AllEmployees: React.FC<AllEmployeesProps> = ({ onMount }) => {
       )
     },
     {
-      header: 'Actions',
+      header: 'Action',
       accessor: 'id',
-      className: 'pl-2',
       render: (_, user) => (
         <div className="flex items-center space-x-2">
           <button 
@@ -111,7 +110,7 @@ const AllEmployees: React.FC<AllEmployeesProps> = ({ onMount }) => {
             }}
             title="Edit"
           >
-            <img src="/images/edit.png" className="w-5 h-5" alt="Edit" />
+            <img src="/images/edit.png" className="w-5 h-5 invert" alt="Edit" />
           </button>
           <button 
             className="text-[#16151C] hover:text-gray-700 rounded-full hover:bg-gray-100"
@@ -182,12 +181,12 @@ const AllEmployees: React.FC<AllEmployeesProps> = ({ onMount }) => {
       <div className="mb-2">
         <Topbar 
           title={
-            <div className="font-['Lexend'] font-light text-[16px] leading-6 text-[#16151C]">
+            <div className="w-[140px] h-[30px] font-semibold text-[19px] leading-6 text-[#16151C]">
               All Employees
             </div>
           } 
           subtitle="All Employee Information"
-          subtitleClassName="text-[14px] leading-5 text-[#A2A1A8] font-light"
+          subtitleClassName="font-light text-[14px] leading-6 text-[#9CA3AF]"
         />
       </div>
 
@@ -195,12 +194,12 @@ const AllEmployees: React.FC<AllEmployeesProps> = ({ onMount }) => {
         {/* Search and Filter Bar */}
         <div className="p-4  flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div className="relative w-full md:w-80">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none border border-[#A2A1A81A] rounded-lg">
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none rounded-lg">
               <img src="/images/search.png" className="h-[20px] w-[20px]" alt="Search" />
             </div>
             <input
               type="text"
-              className="block w-full pl-10 pr-3 py-2 border border-[#A2A1A81A] rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm placeholder:text-[#16151C33] placeholder:font-light"
+              className="w-full bg-white pl-10 pr-3 py-2 border border-[#A2A1A81A] rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm placeholder:text-[#16151C33] placeholder:font-light"
               placeholder="Search"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -212,21 +211,21 @@ const AllEmployees: React.FC<AllEmployeesProps> = ({ onMount }) => {
               label={
                 <div className="flex items-center space-x-2">
                   <img src="/images/add.png" className="h-[24px] w-[24px]" alt="Add" />
-                  <span className="text-base leading-6 text-white text-[16px] font-medium">Add New Employee</span>
+                  <span className="text-base leading-6 text-white text-[16px] font-light">Add New Employee</span>
                 </div>
               }
               style={{ backgroundColor: 'hsla(252, 88%, 64%, 1.00)', color: 'white' }}
-              className="px-4 py-2 rounded-lg text-sm hover:bg-[#5e44d1]"
+              className="px-4 py-2 rounded-lg text-sm hover:bg-[#5e44d1] w-[221px] h-[50px] flex items-center justify-center"
               onClick={() => navigate('/add-new-employee')}
             />
             <Button 
               label={
                 <div className="flex items-center space-x-2">
                   <img src="/images/filter.png" className="h-[24px] w-[24px]" alt="Filter" />
-                  <span className="text-base leading-6 text-black text-[16px] font-medium">Filter</span>
+                  <span className="text-base leading-6 text-black text-[16px] font-light">Filter</span>
                 </div>
               }
-              className="border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 px-4 py-2 rounded-lg text-sm font-medium"
+              className="border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 px-4 py-2 rounded-lg text-sm font-light w-[120px] h-[50px] flex items-center justify-center"
               onClick={handleFilterClick}
             />
           </div>

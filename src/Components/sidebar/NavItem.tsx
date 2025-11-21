@@ -50,8 +50,8 @@ const NavItem: React.FC<NavItemProps> = ({ icon, label, dark, isActive = false }
         <span
           className={`${
             isActive
-              ? "text-[#7152F3] font-[Lexend,sans-serif] font-bold leading-6 text-[16px]"
-              : "text-[#16151C]"
+              ? "text-[#7152F3] font-semibold leading-6 text-[16px]"
+              : "text-[#16151C] font-light text-[16px]"
           }`}
         >
           {label}

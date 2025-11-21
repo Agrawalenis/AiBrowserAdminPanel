@@ -37,21 +37,23 @@ const Dashboard: React.FC<DashboardProps> = () => {
   return (
     <>
       {/* Topbar */}
-      <Topbar
-        title={
-          <div className="font-['Lexend'] font-light text-[16px] leading-6 text-[#16151C]">
-            User Detail
-          </div>
-        }
-        subtitle="User All Information"
-        subtitleClassName="text-[14px] leading-5 text-[#A2A1A8] font-light"
-      />
+      <div className="pt-2">
+        <Topbar
+          title={
+            <div className="w-[140px] h-[30px] font-semibold text-[20px] leading-6 text-[#16151C]">
+              User Detail
+            </div>
+          }
+          subtitle="User All Information"
+          subtitleClassName="w-[168px] h-[22px] font-light text-[14px] leading-6 text-[#9CA3AF]"
+        />
+      </div>
 
-      <div className="w-full flex overflow-hidden flex-row px-6 mt-[-18px] pb-2">
+      <div className="w-full flex overflow-hidden flex-row px-6 mt-[28px] pb-2">
         {/* <div className="w-full h-full border-2 border-[#A2A1A833] rounded-lg p-4 px-0"> */}
-          <div className="relative left-45px] w-full h-full border-2 border-[#A2A1A833] rounded-[10px]">
+          <div className="relative left-45px] w-full h-full border-[1px] border-[#A2A1A833] rounded-[10px]">
             {/* Header section with profile */}
-            <div className="flex justify-between items-center p-4 border-b border-gray-200">
+            <div className="flex justify-between items-center p-4 border-b border-[1px] border-[#A2A1A833]">
               <div className="flex items-center gap-4">
                 <img
                   src={user.avatar}
@@ -83,22 +85,23 @@ const Dashboard: React.FC<DashboardProps> = () => {
 
               <button
                 onClick={() => console.log('Edit profile clicked')}
-                className="flex items-center gap-2 bg-[#7152F3] hover:bg-[#6944F5] text-white text-sm font-medium px-5 py-2.5 rounded-[10px] transition"
+                className="flex items-center gap-2 bg-[#7152F3] hover:bg-[#6944F5] text-white text-sm font-medium px-5 py-2.5 rounded-[10px] transition mt-12 w-[156px] h-[50px]
+                justify-center"
               >
                 <img
                   src="/images/edit.png"
                   alt="Edit"
-                  className="w-[24px] h-[24px] invert"
+                  className="w-[24px] h-[24px]"
                 />
                 <span>Edit Profile</span>
               </button>
             </div>
 
             {/* Sidebar + content */}
-            <div className="flex flex-row p-6 border border-[#A2A1A833]">
+            <div className="flex flex-row p-6 border-[1px] border-[#A2A1A833]">
               {/* Sidebar */}
               <div className="w-[242px] h-[280px] pr-6 border-[#A2A1A833]">
-                <div className="flex flex-col bg-white rounded-md border border-gray-200 overflow-hidden">
+                <div className="flex flex-col bg-white rounded-md border border-gray-200 overflow-hidden space-y-1">
                   {[
                     { id: 'profile', label: 'Profile', icon: '/images/person.png' },
                     { id: 'activity', label: 'Daily Activity', icon: '/images/calendar-check.png' },
@@ -116,24 +119,18 @@ const Dashboard: React.FC<DashboardProps> = () => {
                         else if (item.id === 'dashboard') navigate(`/users/${userId}/dashboard`);
                         else setActiveTab(item.id);
                       }}
-                      className={`flex items-center gap-3 px-4 py-3 transition
+                      className={`flex items-center gap-3 px-4 py-3 transition w-full h-[56px]
                         ${
                           activeTab === item.id
                             ? 'bg-[#7152F3] text-white rounded-[10px]'
                             : 'text-[#16151C] hover:bg-gray-50'
                         } 
-                        font-['Lexend'] font-light text-base leading-6`}
+                        font-light text-base leading-6`}
                     >
                       <img
                         src={item.icon}
                         alt={item.label}
-                        className="w-6 h-6"
-                        style={{
-                          filter:
-                            activeTab === item.id
-                              ? 'hue-rotate(270deg) saturate(5)'
-                              : 'brightness(0)',
-                        }}
+                          className={`w-6 h-6 ${activeTab === item.id ? 'brightness-0 invert' : 'brightness-0'}`}  
                       />
                       {item.label}
                     </button>
@@ -144,50 +141,57 @@ const Dashboard: React.FC<DashboardProps> = () => {
               {/* Right side content */}
               <div className="flex-1 p-4 pb-14 pt-0">
                 <div className="bg-white rounded-lg p-4 pt-0">
-                  <div className="grid grid-cols-2 gap-y-4 gap-x-1">
-                    <div className="w-[313px] h-[154px] bg-white border border-[#A2A1A833] rounded-lg p-4 flex flex-col">
-                      <div className="flex flex-row items-center mb-6">
-                        <img src="/images/person.png" alt="Person" className="w-5 h-5 mr-2" />
-                        <span className="font-['Lexend'] font-light text-base leading-6 tracking-normal text-[#16151C]">Total Bookmarks</span>
+                  <div className="grid grid-cols-2 gap-y-4">
+                    <div className="w-[313px] h-[168px] bg-white border border-[#A2A1A833] rounded-lg p-4 flex flex-col">
+                      <div className="flex flex-row items-center mb-4 space-x-2">
+                        <div className="flex items-center bg-[#7152F30D] rounded-[5px] p-[5px] justify-center w-[40px] h-[40px]">
+                          <img src="/images/user-outline.svg" alt="Person" className="w-[20px] h-[20px]" />
+                        </div>
+                        <span className="font-light text-base leading-6 tracking-normal text-[#16151C] text-[14px]">Total Bookmarks</span>
                       </div>
                       <div className="flex flex-row items-center justify-between">
-                        <span className="font-['Lexend'] font-semibold text-base leading-6 tracking-normal text-[#16151C]">56</span>
+                        <span className="font-semibold text-base leading-6 tracking-normal text-[#16151C] text-[32px]">56</span>
                         <div className="flex items-center justify-start w-[54px] h-[26px] rounded-[5px] p-[5px] bg-[#EAF9F4]">
                           <img src="/images/up.png" alt="Arrow Up" className="w-[12px] mb-0.5 mr-3" />
                           <span className="font-light text-[11px] text-[#30BE82]">12%</span>
                         </div>
                       </div>
-
-                      <hr className="w-[312px] border-[#A2A1A833] mt-6 ml-[-16px]" />
-                      <div className="mt-auto pb-[2px]">
-                        <span className="font-['Lexend'] font-light text-[12px] leading-[18px] tracking-[0%] text-[#A2A1A8]">Update: July 16, 2025</span>
+                      <div className="w-[313px] h-[38px]">
+                        <hr className="w-[312px] border-[1px] border-[#A2A1A833] mt-6 ml-[-16px]" />
+                        <div className="mt-2">
+                          <span className="font-light text-[12px] leading-[18px] tracking-[0%] text-[#A2A1A8] ">Update: July 16, 2025</span>
+                        </div>
                       </div>
                     </div>
-                    <div className="w-[313px] h-[154px] bg-white border border-[#A2A1A833] rounded-lg relative right-24 p-4 flex flex-col">
-                      <div className="flex flex-row items-center mb-6">
-                        <img src="/images/person.png" alt="Person" className="w-5 h-5 mr-2" />
-                        <span className="font-['Lexend'] font-light text-base leading-6 tracking-normal text-[#16151C]">Total Visited Site</span>
+                    <div className="w-[313px] h-[168px] bg-white border border-[#A2A1A833] rounded-lg relative right-24 p-4 flex flex-col">
+                      <div className="flex flex-row items-center mb-4 space-x-2">
+                        <div className="flex items-center bg-[#7152F30D] rounded-[5px] p-[5px] justify-center w-[40px] h-[40px]">
+                          <img src="/images/briefcase-outline.svg" alt="Person" className="w-[20px] h-[20px]" />
+                        </div>
+                        <span className="font-light text-base leading-6 tracking-normal text-[#16151C] text-[14px]">Total Visited Site</span>
                       </div>
                       <div className="flex flex-row items-center justify-between">
-                        <span className="font-['Lexend'] font-semibold text-base leading-6 tracking-normal text-[#16151C]">1050</span>
+                        <span className="font-semibold text-base leading-6 tracking-normal text-[#16151C] text-[32px]">1050</span>
                         <div className="flex items-center justify-start w-[54px] h-[26px] rounded-[5px] p-[5px] bg-[#EAF9F4]">
                           <img src="/images/up.png" alt="Arrow Up" className="w-[12px] mb-0.5 mr-3" />
                           <span className="font-light text-[11px] text-[#30BE82]">5%</span>
                         </div>
                       </div>
 
-                      <hr className="w-[312px] border-[#A2A1A833] mt-6 ml-[-16px]" />
-                      <div className="mt-auto pb-[2px]">
-                        <span className="font-['Lexend'] font-light text-[12px] leading-[18px] tracking-[0%] text-[#A2A1A8]">Update: July 14, 2025</span>
+                      <hr className="w-[312px] border-[1px] border-[#A2A1A833] mt-6 ml-[-16px]" />
+                      <div className="mt-2 pb-[2px]">
+                        <span className="font-light text-[12px] leading-[18px] tracking-[0%] text-[#A2A1A8]">Update: July 14, 2025</span>
                       </div>
                     </div>
-                    <div className="w-[313px] h-[154px] bg-white border border-[#A2A1A833] rounded-lg p-4 flex flex-col">
-                      <div className="flex flex-row items-center mb-6">
-                        <img src="/images/person.png" alt="Person" className="w-5 h-5 mr-2" />
-                        <span className="font-['Lexend'] font-light text-base leading-6 tracking-normal text-[#16151C]">Today Active Time</span>
+                    <div className="w-[313px] h-[168px] bg-white border border-[#A2A1A833] rounded-lg p-4 flex flex-col">
+                      <div className="flex flex-row items-center mb-4 space-x-2">
+                        <div className="flex items-center bg-[#7152F30D] rounded-[5px] p-[5px] justify-center w-[40px] h-[40px]">
+                          <img src="/images/calendar-check-outline.svg" alt="Person" className="w-[20px] h-[20px]" />
+                        </div>
+                        <span className="font-light text-base leading-6 tracking-normal text-[#16151C] text-[14px]">Today Active Time</span>
                       </div>
                       <div className="flex flex-row items-center justify-between">
-                        <span className="font-['Lexend'] font-semibold text-base leading-6 tracking-normal text-[#16151C]">470 Hours</span>
+                        <span className="font-semibold text-base leading-6 tracking-normal text-[#16151C] text-[32px]">470 Hours</span>
                         <span className="font-light text-[11px] text-[#feeff0]">5%</span>
                         <div className="flex items-center justify-start w-[54px] h-[26px] rounded-[5px] p-[5px] bg-[#feeff0]">
                           <img src="/images/down-arrow.png" alt="Arrow Up" className="w-[12px] h-[12px] mt-1 mr-3" />
@@ -195,27 +199,29 @@ const Dashboard: React.FC<DashboardProps> = () => {
                         </div>
                       </div>
 
-                      <hr className="w-[312px] border-[#A2A1A833] mt-6 ml-[-16px]" />
-                      <div className="mt-auto pb-[2px]">
-                        <span className="font-['Lexend'] font-light text-[12px] leading-[18px] tracking-[0%] text-[#A2A1A8]">Update: July 14, 2025</span>
+                      <hr className="w-[312px] border-[1px] border-[#A2A1A833] mt-6 ml-[-16px]" />
+                      <div className="mt-2 pb-[2px]">
+                        <span className="font-light text-[12px] leading-[18px] tracking-[0%] text-[#A2A1A8]">Update: July 14, 2025</span>
                       </div>
                     </div>
-                    <div className="w-[313px] h-[154px] bg-white border border-[#A2A1A833] rounded-lg relative right-24 p-4 flex flex-col">
-                      <div className="flex flex-row items-center mb-6">
-                        <img src="/images/person.png" alt="Person" className="w-5 h-5 mr-2" />
-                        <span className="font-['Lexend'] font-light text-base leading-6 tracking-normal text-[#16151C]">Total Download</span>
+                    <div className="w-[313px] h-[168px] bg-white border border-[#A2A1A833] rounded-lg relative right-24 p-4 flex flex-col">
+                      <div className="flex flex-row items-center mb-4 space-x-2">
+                        <div className="flex items-center bg-[#7152F30D] rounded-[5px] p-[5px] justify-center w-[40px] h-[40px]">
+                          <img src="/images/file-outline.svg" alt="Person" className="w-[20px] h-[20px]" />
+                        </div>
+                        <span className="font-light text-base leading-6 tracking-normal text-[#16151C] text-[14px]">Total Download</span>
                       </div>
                       <div className="flex flex-row items-center justify-between">
-                        <span className="font-['Lexend'] font-semibold text-base leading-6 tracking-normal text-[#16151C]">250</span>
+                        <span className="font-semibold text-base leading-6 tracking-normal text-[#16151C] text-[32px]">250</span>
                         <div className="flex items-center justify-start w-[54px] h-[26px] rounded-[5px] p-[5px] bg-[#EAF9F4]">
                           <img src="/images/up.png" alt="Arrow Up" className="w-[12px] mb-0.5 mr-3" />
                           <span className="font-light text-[11px] text-[#30BE82]">12%</span>
                         </div>
                       </div>
 
-                      <hr className="w-[312px] border-[#A2A1A833] mt-6 ml-[-16px]" />
-                      <div className="mt-auto pb-[2px]">
-                        <span className="font-['Lexend'] font-light text-[12px] leading-[18px] tracking-[0%] text-[#A2A1A8]">Update: July 10, 2025</span>
+                      <hr className="w-[312px] border-[1px] border-[#A2A1A833] mt-6 ml-[-16px]" />
+                      <div className="mt-2 pb-[2px]">
+                        <span className="font-light text-[12px] leading-[18px] tracking-[0%] text-[#A2A1A8]">Update: July 10, 2025</span>
                       </div>
                     </div>
                   </div>
@@ -224,7 +230,7 @@ const Dashboard: React.FC<DashboardProps> = () => {
             </div>
 
             {/* Pagination BELOW inner div and ABOVE outer div end */}
-          <div className="border-gray-200">
+          <div className="border-gray-200 ml-4">
               <Pagination
                 currentPage={currentPage}
                 totalPages={totalPages}

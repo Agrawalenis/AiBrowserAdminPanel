@@ -35,12 +35,12 @@ const Profile: React.FC<ProfileProps> = () => {
       {/* Topbar */}
       <Topbar
         title={
-          <div className="font-['Lexend'] font-light text-[16px] leading-6 text-[#16151C]">
+          <div className="w-[140px] h-[30px] font-semibold text-[20px] leading-6 text-[#16151C]">
             User Detail
           </div>
         }
         subtitle="User All Information"
-        subtitleClassName="text-[14px] leading-5 text-[#A2A1A8] font-light"
+        subtitleClassName="w-[168px] h-[22px] font-light text-[14px] leading-6 text-[#9CA3AF]"
       />
 
       <div className="w-full flex overflow-hidden flex-row px-6 mt-[-18px] pb-2">
@@ -84,7 +84,7 @@ const Profile: React.FC<ProfileProps> = () => {
                 <img
                   src="/images/edit.png"
                   alt="Edit"
-                  className="w-[24px] h-[24px] invert"
+                  className="w-[24px] h-[24px]"
                 />
                 <span>Edit Profile</span>
               </button>
@@ -118,18 +118,12 @@ const Profile: React.FC<ProfileProps> = () => {
                             ? 'bg-[#7152F3] text-white rounded-[10px]'
                             : 'text-[#16151C] hover:bg-gray-50'
                         } 
-                        font-['Lexend'] font-light text-base leading-6`}
+                        font-light text-base leading-6`}
                     >
-                      <img
-                        src={item.icon}
-                        alt={item.label}
-                        className="w-6 h-6"
-                        style={{
-                          filter:
-                            activeTab === item.id
-                              ? 'hue-rotate(270deg) saturate(5)'
-                              : 'brightness(0)',
-                        }}
+                      <img 
+                          src={item.icon} 
+                          alt={item.label} 
+                          className={`w-6 h-6 ${activeTab === item.id ? 'brightness-0 invert' : 'brightness-0'}`} 
                       />
                       {item.label}
                     </button>
@@ -161,7 +155,7 @@ const Profile: React.FC<ProfileProps> = () => {
                               : 'none',
                         }}
                       />
-                      <span className="font-['Lexend'] font-semibold text-base leading-6 tracking-normal">Personal Information</span>
+                      <span className="font-semibold text-base leading-6 tracking-normal">Personal Information</span>
                     </div>
                     <div
                       className={`w-fit pb-2 cursor-pointer flex items-center ${
@@ -182,7 +176,7 @@ const Profile: React.FC<ProfileProps> = () => {
                               : 'none',
                         }}
                       />
-                      <span className="font-['Lexend'] font-light text-base leading-6 tracking-normal">Account Access</span>
+                      <span className="font-light text-base leading-6 tracking-normal">Account Access</span>
                     </div>
                   </div>
 
@@ -204,8 +198,8 @@ const Profile: React.FC<ProfileProps> = () => {
                         { label: 'Zip Code', value: '35624' },
                       ].map((info) => (
                         <div key={info.label} className="flex flex-col pb-2 border-b border-gray-200">
-                          <p className="text-[#A2A1A8] font-['Lexend'] font-light text-sm leading-[22px] tracking-normal mb-1">{info.label}</p>
-                          <p className="font-['Lexend'] font-light text-base leading-6 tracking-normal text-[#16151C]">{info.value}</p>
+                          <p className="text-[#A2A1A8] font-light text-sm leading-[22px] tracking-normal mb-1">{info.label}</p>
+                          <p className="font-light text-base leading-6 tracking-normal text-[#16151C]">{info.value}</p>
                         </div>
                       ))}
                     </div>

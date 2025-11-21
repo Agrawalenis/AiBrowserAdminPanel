@@ -45,30 +45,30 @@ const Pagination: React.FC<PaginationProps> = ({
         </div>
         <div className="w-[76px] h-[46px] border border-[#A2A1A833] bg-white rounded-[10px] flex items-center justify-between px-3 text-sm font-[300]">
             <span>{itemsPerPage}</span>
-            <ChevronDown className="h-4 w-4 text-[#A2A1A8]" />
+            <ChevronDown className="h-4 w-4 text-[#16151C]" />
           </div>
       </div>
       
       {/* Center: Showing text */}
       <div className="text-sm text-[#A2A1A8]">
-        Showing {startItem} to {endItem} of {totalItems} records
+        Showing {startItem} to {endItem} out of {totalItems} records
       </div>
       
       {/* Right: Page navigation */}
-      <div className="flex items-center gap-[5px]">
+      <div className="flex items-center justify-center gap-[5px]">
         <button
           onClick={() => onPageChange(currentPage - 1)}
           disabled={currentPage === 1}
           className={`p-1.5 rounded-md ${currentPage === 1 ? 'text-[#A2A1A8] cursor-not-allowed' : 'text-[#A2A1A8] hover:bg-[#A2A1A833]'}`}
         >
-          <ChevronLeft className="h-[24px] w-[24px]" />
+          <img src="/images/direction-left.svg" alt="" className="w-[24px] h-[24px]" />
         </button>
         
         {getPageNumbers().map((page) => (
           <button
             key={page}
             onClick={() => onPageChange(page)}
-            className={`w-8 h-8 flex items-center justify-center rounded-[10px] text-[14px] border ${
+            className={`w-[35px] h-[36px] flex items-center justify-center rounded-[8px] text-[14px] border ${
               currentPage === page
                 ? 'bg-white text-[#7152F3] border-[#7152F3] text-[14px] font-[600]'
                 : 'text-[#16151C] hover:bg-[#16151C33] text-[14px] font-[300] border-transparent'
@@ -87,7 +87,7 @@ const Pagination: React.FC<PaginationProps> = ({
               : 'text-[#A2A1A8] hover:bg-[#A2A1A833]'
           }`}
         >
-          <ChevronRight className="h-[24px] w-[24px]" />
+         <img src="/images/direction-right.svg" alt="" className="w-[24px] h-[24px]" />
         </button>
       </div>
     </div>

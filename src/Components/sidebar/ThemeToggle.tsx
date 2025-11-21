@@ -8,7 +8,7 @@ interface ThemeToggleProps {
 
 const ThemeToggle: React.FC<ThemeToggleProps> = ({ isDarkMode, toggleTheme }) => {
   return (
-    <div className="flex bg-[#A2A1A80D] rounded-lg p-1 w-full gap-1">
+    <div className="flex bg-[#A2A1A80D] rounded-lg p-1 w-full gap-1 pb-4">
       <Button
         label={
           <span className="flex items-center justify-center gap-2">

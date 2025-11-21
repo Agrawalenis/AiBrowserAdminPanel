@@ -163,7 +163,7 @@ const UserProfile: React.FC<UserProfileProps> = () => {
                   onClick={() => console.log('Edit Profile Clicked')}
                   className="flex items-center gap-2 bg-[#7152F3] hover:bg-[#6944F5] text-white text-sm font-medium px-5 py-2.5 rounded-[10px] transition w-[156px] h-[50px]"
                 >
-                  <img src="/images/edit.png" alt="Edit" className="w-[24px] h-[24px] invert" />
+                  <img src="/images/edit.png" alt="Edit" className="w-[24px] h-[24px]" />
                   <span>Edit Profile</span>
                 </button>
               </div>

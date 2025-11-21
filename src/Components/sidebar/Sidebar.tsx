@@ -54,7 +54,7 @@ const Sidebar: React.FC<SidebarProps> = ({ setActivePage, activePage }) => {
       style={{ backgroundColor: "#A2A1A80D" }}
     >
       {/* Logo */}
-      <div className="flex items-center justify-start p-6 pb-2 pl-[4.5rem]">
+      <div className="flex items-center justify-start p-2 pt-6 pl-[4.5rem]">
         <div className="w-[36.41px] h-[36.41px] flex items-center justify-center mr-1">
           <img
             src="/images/logo.png"

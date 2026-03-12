@@ -1,5 +1,12 @@
 export type UserStatus = 'active' | 'inactive';
 export type PayrollStatus = 'Completed' | 'Pending';
+import { PiUsersThreeBold } from "react-icons/pi";
+import { TiShoppingBag } from "react-icons/ti";
+import { FaRegFileAlt } from "react-icons/fa";
+import { SlCalender } from "react-icons/sl";
+
+
+
 
 export interface User {
   name: string;
@@ -58,7 +65,7 @@ export interface Job {
 // ─── Dashboard Types ──────────────────────────────────────────────────────────
 
 export interface StatCardData {
-  icon: string;
+  icon: React.ElementType;
   label: string;
   value: string;
   change: number;
@@ -96,7 +103,7 @@ export interface WebsiteRow {
 
 export const STAT_CARDS_DATA: StatCardData[] = [
   {
-    icon: "👤",
+    icon: PiUsersThreeBold ,
     label: "Total Users",
     value: "56.78M",
     change: 10,
@@ -104,7 +111,7 @@ export const STAT_CARDS_DATA: StatCardData[] = [
     iconBg: "#EDE9FD",
   },
   {
-    icon: "🌐",
+    icon: TiShoppingBag,
     label: "Total Websites",
     value: "100.23k",
     change: 2,
@@ -112,7 +119,7 @@ export const STAT_CARDS_DATA: StatCardData[] = [
     iconBg: "#EDE9FD",
   },
   {
-    icon: "📝",
+    icon: SlCalender,
     label: "Today Blogs",
     value: "34.6M",
     change: -5,
@@ -120,7 +127,7 @@ export const STAT_CARDS_DATA: StatCardData[] = [
     iconBg: "#EDE9FD",
   },
   {
-    icon: "📶",
+    icon: FaRegFileAlt,
     label: "Average Traffic",
     value: "23.45M",
     change: 14,

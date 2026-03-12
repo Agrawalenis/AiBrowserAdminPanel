@@ -18,19 +18,9 @@ const StatusBadge: React.FC<{ status: WebsiteRow["status"] }> = ({ status }) => 
 // ─── Websites Table ───────────────────────────────────────────────────────────
 const WebsitesTable: React.FC = () => {
   return (
-   <div
-  className="
-  bg-white
-  rounded-2xl
-  p-4 lg:p-5
-  shadow-sm
-  border border-gray-100
-  w-full
-  min-h-[320px]
-  lg:min-h-[420px]
-"
->{/* Header */}
-      <div className="flex items-center justify-between mb-4">
+  <div className="bg-white rounded-2xl p-4 lg:p-4 shadow-sm border border-gray-100 w-full h-full flex flex-col">
+{/* Header */}
+      <div className="flex items-center justify-between mb-2">
         <h2 className="text-sm lg:text-base font-bold text-[#16151C]">
           Top 10 websites Overview
         </h2>
@@ -44,13 +34,13 @@ const WebsitesTable: React.FC = () => {
         <table className="w-full min-w-[480px]">
           <thead>
             <tr className="text-xs text-gray-400 border-b border-gray-100">
-              <th className="text-left pb-3 font-medium">Website Name</th>
-              <th className="text-left pb-3 font-medium">Category</th>
-              <th className="text-left pb-3 font-medium hidden md:table-cell">
+              <th className="text-left pb-2 font-medium">Website Name</th>
+              <th className="text-left pb-2 font-medium">Category</th>
+              <th className="text-left pb-2 font-medium hidden md:table-cell">
                 Google Index
               </th>
-              <th className="text-left pb-3 font-medium">Overall Traffic</th>
-              <th className="text-left pb-3 font-medium">Status</th>
+              <th className="text-left pb-2 font-medium">Overall Traffic</th>
+              <th className="text-left pb-2 font-medium">Status</th>
             </tr>
           </thead>
           <tbody>
@@ -60,7 +50,7 @@ const WebsitesTable: React.FC = () => {
                 className="border-b border-gray-50 hover:bg-gray-50/50 transition-colors"
               >
                 {/* Website Name */}
-                <td className="py-2.5 lg:py-3">
+                <td className="py-1 lg:py-1">
                   <div className="flex items-center gap-2">
                     <div className="w-7 h-7 rounded-full bg-gray-100 flex items-center justify-center text-sm flex-shrink-0">
                       {site.favicon}
@@ -72,22 +62,22 @@ const WebsitesTable: React.FC = () => {
                 </td>
 
                 {/* Category */}
-                <td className="py-2.5 lg:py-3 text-xs lg:text-sm text-gray-500">
+                <td className="py-1 lg:py-2.5 text-xs lg:text-sm text-gray-500">
                   {site.category}
                 </td>
 
                 {/* Google Index — hidden on mobile */}
-                <td className="py-2.5 lg:py-3 text-xs lg:text-sm text-gray-500 hidden md:table-cell">
+                <td className="py-1 lg:py-2.5 text-xs lg:text-sm text-gray-500 hidden md:table-cell">
                   {site.googleIndex}
                 </td>
 
                 {/* Traffic */}
-                <td className="py-2.5 lg:py-3 text-xs lg:text-sm text-gray-500">
+                <td className="py-1 lg:py-2.5 text-xs lg:text-sm text-gray-500">
                   {site.traffic}
                 </td>
 
                 {/* Status */}
-                <td className="py-2.5 lg:py-3">
+                <td className="py-1 lg:py-2.5">
                   <StatusBadge status={site.status} />
                 </td>
               </tr>

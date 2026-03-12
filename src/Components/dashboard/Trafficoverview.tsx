@@ -30,14 +30,14 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 const SegmentBar = (props: any) => {
   const { x, y, width, height, fill } = props;
 
-  const gap = 3;
+  const gap = 6; // increase gap
 
   return (
     <rect
       x={x}
-      y={y + gap}
+      y={y + gap / 2}
       width={width}
-      height={Math.max(height - gap, 1)}
+      height={Math.max(height - gap, 2)}
       rx={4}
       ry={4}
       fill={fill}
@@ -54,17 +54,15 @@ const TrafficOverview: React.FC = () => {
   className="
   bg-white
   rounded-2xl
-  p-4 lg:p-5
+  p-3 lg:p-5
   shadow-sm
   border border-gray-100
   w-full
-  max-w-[646px]
-  min-h-[420px]
-  lg:min-h-[534px]
+  
 "
 >
       {/* Header */}
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-center justify-between mb-7">
         <h2 className="text-sm lg:text-base font-bold text-[#16151C]">
           Traffic Overview
         </h2>
@@ -82,9 +80,13 @@ const TrafficOverview: React.FC = () => {
       
 
       {/* Chart */}
-   <div className="w-full h-[220px] sm:h-[260px] lg:h-[300px]">
+   <div className="w-full h-[220px] sm:h-[260px] lg:h-[407px]">
   <ResponsiveContainer width="100%" height="100%">
-  <BarChart data={TRAFFIC_DATA} barCategoryGap="60%">
+  <BarChart
+  data={TRAFFIC_DATA}
+  barCategoryGap="70%"
+  barSize={10}
+>
 
     <CartesianGrid
       strokeDasharray="3 3"
@@ -96,13 +98,13 @@ const TrafficOverview: React.FC = () => {
       dataKey="day"
       axisLine={false}
       tickLine={false}
-      tick={{ fontSize: 11, fill: "#9CA3AF" }}
+      tick={{ fontSize: 14, fill: "#9CA3AF" }}
     />
 
     <YAxis
       axisLine={false}
       tickLine={false}
-      tick={{ fontSize: 11, fill: "#9CA3AF" }}
+      tick={{ fontSize: 14, fill: "#9CA3AF" }}
       domain={[0, 100]}
       ticks={[0, 20, 40, 60, 80, 100]}
       tickFormatter={(v) => `${v}%`}
@@ -111,54 +113,38 @@ const TrafficOverview: React.FC = () => {
 
     <Tooltip content={<CustomTooltip />} cursor={{ fill: "#F9F8FF" }} />
 
-    {/* Purple */}
-    <Bar
-      dataKey="desktop"
-      stackId="traffic"
-      fill="#6C5CE7"
-      shape={<SegmentBar />}
-      maxBarSize={14}
-    />
+{/* Purple */}
+<Bar
+  dataKey="desktop"
+  stackId="traffic"
+  fill="#7152F3"
+  shape={<SegmentBar />}
+  maxBarSize={10}
+/>
 
-    {/* Orange */}
-    <Bar
-      dataKey="mobile"
-      stackId="traffic"
-      fill="#F5A623"
-      shape={<SegmentBar />}
-      maxBarSize={14}
-    />
+{/* Orange */}
+<Bar
+  dataKey="mobile"
+  stackId="traffic"
+  fill="#F5A623"
+  shape={<SegmentBar />}
+  maxBarSize={10}
+/>
 
-    {/* Red */}
-    <Bar
-      dataKey="other"
-      stackId="traffic"
-      fill="#FF5B5B"
-      shape={<SegmentBar />}
-      maxBarSize={14}
-    />
+{/* Red */}
+<Bar
+  dataKey="other"
+  stackId="traffic"
+  fill="#FF5B5B"
+  shape={<SegmentBar />}
+  maxBarSize={10}
+/>
 
   </BarChart>
 </ResponsiveContainer>
 </div>
 
-      {/* Legend */}
-      <div className="flex gap-4 mt-2 justify-center">
-  <span className="flex items-center gap-1.5 text-xs text-gray-500">
-    <span className="w-3 h-3 rounded-sm bg-[#6C5CE7]" />
-    Desktop
-  </span>
-
-  <span className="flex items-center gap-1.5 text-xs text-gray-500">
-    <span className="w-3 h-3 rounded-sm bg-[#F5A623]" />
-    Mobile
-  </span>
-
-  <span className="flex items-center gap-1.5 text-xs text-gray-500">
-    <span className="w-3 h-3 rounded-sm bg-[#FF5B5B]" />
-    Other
-  </span>
-</div>
+      
     </div>
   );
 };

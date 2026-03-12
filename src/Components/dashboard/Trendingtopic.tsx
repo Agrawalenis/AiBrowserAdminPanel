@@ -47,26 +47,29 @@ const MiniCalendar: React.FC = () => {
     );
 
   return (
-    <div className="w-full">
+    <div className="w-full h-full">
+
       {/* Month Navigation */}
-      <div className="flex items-center justify-between mb-3">
+      <div className="flex items-center justify-between mb-1">
+
         <button
           onClick={prev}
-          className="w-6 h-6 rounded-full bg-[#7152F3] text-white flex items-center justify-center text-xs"
+          className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 rounded-full bg-[#7152F3] text-white flex items-center justify-center text-xs sm:text-sm"
         >
           ‹
         </button>
 
-        <span className="text-sm font-semibold text-[#16151C]">
+        <span className="text-xs sm:text-sm lg:text-base xl:text-lg font-semibold text-[#16151C]">
           {monthName}, {current.year}
         </span>
 
         <button
           onClick={next}
-          className="w-6 h-6 rounded-full bg-[#7152F3] text-white flex items-center justify-center text-xs"
+          className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 rounded-full bg-[#7152F3] text-white flex items-center justify-center text-xs sm:text-sm"
         >
           ›
         </button>
+
       </div>
 
       {/* Day Headers */}
@@ -74,7 +77,7 @@ const MiniCalendar: React.FC = () => {
         {CALENDAR_DAYS.map((d) => (
           <div
             key={d}
-            className="text-center text-[11px] font-medium text-gray-400 py-1"
+            className="text-center text-[10px] sm:text-[11px] lg:text-xs xl:text-sm font-medium text-gray-400 py-1"
           >
             {d}
           </div>
@@ -82,7 +85,7 @@ const MiniCalendar: React.FC = () => {
       </div>
 
       {/* Date Cells */}
-      <div className="grid grid-cols-7 gap-y-1">
+      <div className="grid grid-cols-7 gap-y-1 sm:gap-y-2 lg:gap-y-1.5">
         {cells.map((day, i) => {
           const isToday =
             day === today.getDate() &&
@@ -95,47 +98,61 @@ const MiniCalendar: React.FC = () => {
             <div
               key={i}
               onClick={() => day && setSelected(day)}
-              className={`text-center text-[12px] py-1 rounded-full
-              ${day ? "cursor-pointer hover:bg-[#EDE9FD]" : ""}
-              ${isSel && !isToday ? "bg-[#7152F3] text-white font-semibold" : ""}
-              ${isToday ? "bg-[#FF6B6B] text-white font-semibold" : "text-[#16151C]"}`}
+              className={`
+                text-center 
+                text-[11px] sm:text-xs lg:text-sm 
+                py-1 sm:py-1.5 
+                rounded-full 
+                transition-colors
+                ${day ? "cursor-pointer hover:bg-[#EDE9FD]" : ""}
+                ${isSel && !isToday ? "bg-[#7152F3] text-white font-semibold" : ""}
+                ${isToday ? "bg-[#FF6B6B] text-white font-semibold" : "text-[#16151C]"}
+              `}
             >
               {day ?? ""}
             </div>
           );
         })}
       </div>
+
     </div>
   );
 };
 
 // ─── News Feed ───────────────────────────────────────────────
 const NewsFeed: React.FC = () => (
-  <div className="flex flex-col gap-4 mt-5 pt-4 border-t border-gray-100">
+ <div className="flex flex-col gap-3 mt-4 pt-4 border-t border-gray-100">
     {NEWS_GROUPS.map((group, gi) => (
       <div key={gi}>
-        <div className="flex items-center justify-between mb-2">
-          <span className="text-xs font-semibold text-gray-500">
+        <div className="flex items-center justify-between mb-3">
+          <span className="text-xs sm:text-sm lg:text-base font-semibold text-gray-500">
             {group.date}
           </span>
-          <button className="text-gray-300 text-lg">⋮</button>
+
+          <button className="text-gray-300 text-lg lg:text-xl">⋮</button>
         </div>
 
         <div className="flex flex-col gap-3">
           {group.items.map((item, ii) => (
             <div key={ii} className="flex gap-3">
-              <span className="text-[11px] font-semibold text-[#7152F3]">
+
+              {/* Time */}
+              <span className="text-sm sm:text-base lg:text-lg font-semibold text-[#7152F3]">
                 {item.time}
               </span>
 
               <div className="border-l-2 border-[#7152F3] pl-3 flex flex-col">
-                <span className="text-[11px] font-semibold text-[#16151C]">
+
+                {/* Category */}
+                <span className="text-xs sm:text-sm lg:text-base font-semibold text-[#16151C]">
                   {item.category}
                 </span>
 
-                <span className="text-[11px] text-gray-400">
+                {/* Title */}
+                <span className="text-xs sm:text-sm lg:text-base text-gray-400">
                   {item.title}
                 </span>
+
               </div>
             </div>
           ))}
@@ -152,38 +169,25 @@ const NewsFeed: React.FC = () => (
 // ─── Combined Panel ─────────────────────────────────────────
 const TrendingTopic: React.FC = () => {
   return (
-    <div
-  className="
-  bg-white 
-  rounded-2xl 
-  p-4 lg:p-5 
-  shadow-sm 
-  border border-gray-100 
-  flex flex-col
-  w-full
-  max-w-[414px]
-  min-h-[600px]
-  lg:min-h-[882px]
-"
->
-  {/* Header */}
-  <div className="flex items-center justify-between mb-4">
-    <h2 className="text-sm lg:text-base font-bold text-[#16151C]">
-      Trending Topic
-    </h2>
+   <div className="bg-white rounded-2xl p-3 lg:p-4 shadow-sm border border-gray-100 flex flex-col w-full h-full">
+      {/* Header */}
+      <div className="flex items-center justify-between mb-3 flex-shrink-0 pl-2">
+        <h2 className="font-bold text-[#16151C] text-[clamp(14px,1.2vw,20px)]">
+          Trending Topic
+        </h2>
+      </div>
 
-    <button className="w-8 h-8 rounded-xl bg-[#EDE9FD] flex items-center justify-center">
-      📅
-    </button>
-  </div>
+      {/* Calendar */}
+      <div className="flex-shrink-0">
+        <MiniCalendar />
+      </div>
 
-  {/* Calendar */}
-  <MiniCalendar />
+      {/* NewsFeed */}
+      <div className="flex-1 overflow-y-auto">
+        <NewsFeed />
+      </div>
 
-  {/* News Feed */}
-  <NewsFeed />
-</div>
+    </div>
   );
 };
-
 export default TrendingTopic;

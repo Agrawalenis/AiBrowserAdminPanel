@@ -488,24 +488,26 @@ import TrendingTopic from "../../Components/dashboard/Trendingtopic";
 
 const AdminDashboard: React.FC = () => {
  return (
-  <div className="min-h-screen w-full bg-[#FFFFFF] p-3 sm:p-4 lg:p-6 font-sans">
+  <div className="min-h-screen w-full bg-[#FFFFFF] p-3 sm:p-4 lg:p-0 font-sans">
 
     {/* ── Topbar ── */}
     <DashboardTopbar />
 
     {/* ── Main Layout ── */}
-    <div className="grid grid-cols-12 gap-4 lg:gap-6">
+    <div className="grid grid-cols-12 gap-2 lg:gap-2 items-stretch">
 
       {/* LEFT SIDE */}
-      <div className="col-span-12 xl:col-span-8 flex flex-col gap-4 lg:gap-6">
-        <StatCards />
+      <div className="col-span-12 xl:col-span-7 flex flex-col gap-4 lg:gap-3">
+          <StatCards />
         <TrafficOverview />
       </div>
 
       {/* RIGHT SIDEBAR */}
-      <div className="col-span-12 xl:col-span-4">
-        <TrendingTopic />
-      </div>
+     <div className="col-span-12 xl:col-span-5 flex">
+  <div className="w-full max-h-full">
+    <TrendingTopic />
+  </div>
+</div>
 
       {/* FULL WIDTH TABLE */}
       <div className="col-span-12">

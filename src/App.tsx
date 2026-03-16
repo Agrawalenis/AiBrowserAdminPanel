@@ -14,6 +14,7 @@ import Dashboard from "./Pages/user/Dashboard";
 import Downloads from "./Pages/user/Downloads";
 import Profile from "./Pages/user/Profile";
 import AdminDashboard from "./Pages/Dashboard/AdminDashboard";
+import Trendings from "./Pages/Trending/Trendings";
 
 const AppContent: React.FC = () => {
   const [activePage, setActivePage] = useState("All Users");
@@ -49,6 +50,7 @@ const AppContent: React.FC = () => {
           <Route path="/users/:userId" element={<UserProfile />} />
           <Route path="/employees/:id" element={<EmployeeDetails />} />
           <Route path="/all-employees" element={<AllEmployees/>}/>
+          <Route path="/trending" element={<Trendings/>} />
           <Route path="/users/:userId/profile" element={<Profile />} />
           <Route path="/users/:userId/downloads" element={<Downloads />} />
           <Route path="/users/:userId/bookmarks" element={<Bookmarks />} />

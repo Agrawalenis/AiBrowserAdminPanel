@@ -205,3 +205,14 @@ export const WEBSITES_DATA: WebsiteRow[] = [
 // ─── Calendar Constants ───────────────────────────────────────────────────────
 
 export const CALENDAR_DAYS = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"] as const;
+
+export interface TrendingTopic {
+  id: number;
+  title: string;
+  category: string;
+  description: string;
+  posts: number;
+  growth: number;
+  reach: string;
+  image: string;
+}

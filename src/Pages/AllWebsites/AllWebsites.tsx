@@ -3,10 +3,36 @@ import React, { useEffect, useRef, useState } from "react";
 import Topbar from "../../Components/layout/Topbar";
 import { Search, Plus, SlidersHorizontal, MoreHorizontal, Eye, Edit, BarChart, Ban, Trash } from "lucide-react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import {
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+  PieChart,
+  Pie,
+  Cell
+} from "recharts";
 
 
 
+const trafficData = [
+  { month: "Nov", visitors: 200 },
+  { month: "Dec", visitors: 350 },
+  { month: "Jan", visitors: 400 },
+  { month: "Feb", visitors: 800 },
+  { month: "Mar", visitors: 1200 },
+  { month: "Apr", visitors: 1600 }
+];
 
+const sourceData = [
+  { name: "Organic", value: 54 },
+  { name: "Direct", value: 28 },
+  { name: "Social", value: 18 }
+];
+
+const COLORS = ["#7C3AED", "#60A5FA", "#34D399"];
 
 
 
@@ -115,6 +141,29 @@ const websites = [
   }
 ];
 
+const analyticsData: any = {
+  "techstore.com": {
+    visitors: "42,156",
+    visitorsChange: "-8.5%",
+    pageviews: "132,479",
+    pageviewsChange: "+12.4%",
+    session: "3m 47s",
+    sessionChange: "-2.1%",
+    bounce: "37.6%",
+    bounceChange: "-1.5%"
+  },
+  "travelbliss.com": {
+    visitors: "37,842",
+    visitorsChange: "+5.2%",
+    pageviews: "98,214",
+    pageviewsChange: "+6.3%",
+    session: "4m 12s",
+    sessionChange: "+1.2%",
+    bounce: "34.2%",
+    bounceChange: "-2.4%"
+  }
+};
+
 const AllWebsites = () => {
 
   const [page, setPage] = useState(1);
@@ -123,6 +172,7 @@ const AllWebsites = () => {
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const [showBlockModal, setShowBlockModal] = useState(false);
 const [selectedSite, setSelectedSite] = useState<any>(null);
+const [showAnalytics, setShowAnalytics] = useState(false);
 
 
 
@@ -302,11 +352,17 @@ const [selectedSite, setSelectedSite] = useState<any>(null);
         Edit
       </button>
 
-      <button className="flex items-center gap-2 w-full px-4 py-2 hover:bg-gray-100 text-left">
-       <BarChart size={16}/>
-
-        View Analytics
-      </button>
+      <button
+onClick={() => {
+setSelectedSite(site);
+setShowAnalytics(true);
+setOpenMenu(null);
+}}
+className="flex items-center gap-2 w-full px-4 py-2 hover:bg-gray-100 text-left"
+>
+<BarChart size={16}/>
+View Analytics
+</button>
 
       <button
   onClick={() => {
@@ -455,6 +511,235 @@ className="flex items-center gap-2 w-full px-4 py-2 hover:bg-red-50 text-red-600
     </div>
 
   </div>
+)}
+{showAnalytics && selectedSite && (
+<div className="fixed inset-0 flex items-center justify-center bg-black/40 z-50 px-6 py-6">
+
+<div className="bg-white w-full max-w-[1300px] h-[92vh] rounded-2xl shadow-xl overflow-y-auto">
+
+{/* Header */}
+<div className="flex justify-between items-center px-8 py-5 border-b">
+
+<h2 className="text-2xl font-semibold text-gray-800">
+View Analytics
+</h2>
+
+<button
+onClick={() => setShowAnalytics(false)}
+className="text-gray-600 hover:text-gray-700 text-xl"
+>
+✕
+</button>
+
+</div>
+
+
+{/* Body */}
+<div className="px-8 py-8 space-y-8 h-[calc(100%-100px)]">
+
+
+{/* Website Info */}
+<div className="flex items-center gap-4">
+
+<div className={`w-12 h-12 rounded-lg flex items-center justify-center text-white ${selectedSite.iconColor}`}>
+🌐
+</div>
+
+<div>
+<p className="font-semibold text-lg">{selectedSite.name}</p>
+<p className="text-gray-400">{selectedSite.domain}</p>
+</div>
+
+</div>
+
+
+{/* Analytics Cards */}
+<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+<div className="border rounded-xl p-5 hover:shadow-sm transition">
+<p className="text-gray-500 text-sm mb-1">Total Visitors</p>
+<p className="text-2xl font-semibold">42,156</p>
+</div>
+
+<div className="border rounded-xl p-5 hover:shadow-sm transition">
+<p className="text-gray-500 text-sm mb-1">Total Pageviews</p>
+<p className="text-2xl font-semibold">132,479</p>
+</div>
+
+<div className="border rounded-xl p-5 hover:shadow-sm transition">
+<p className="text-gray-500 text-sm mb-1">Avg Session</p>
+<p className="text-2xl font-semibold">3m 47s</p>
+</div>
+
+<div className="border rounded-xl p-5 hover:shadow-sm transition">
+<p className="text-gray-500 text-sm mb-1">Bounce Rate</p>
+<p className="text-2xl font-semibold">37.6%</p>
+</div>
+
+</div>
+
+
+{/* Traffic Overview */}
+<div className="space-y-4">
+
+<h3 className="text-lg font-semibold text-gray-800">
+Traffic Overview
+</h3>
+
+<div className="h-[300px] border rounded-xl p-4 bg-white">
+
+<ResponsiveContainer width="100%" height="100%">
+
+<AreaChart data={trafficData}>
+
+<XAxis dataKey="month" />
+
+<YAxis />
+
+<Tooltip />
+
+<Area
+type="monotone"
+dataKey="visitors"
+stroke="#7C3AED"
+fill="#C4B5FD"
+fillOpacity={0.4}
+strokeWidth={3}
+/>
+
+</AreaChart>
+
+</ResponsiveContainer>
+
+</div>
+
+</div>
+
+
+{/* Bottom Section */}
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+
+
+{/* Traffic Sources */}
+<div className="space-y-4">
+
+<h3 className="text-lg font-semibold">
+Traffic Sources
+</h3>
+
+<div className="flex items-center gap-8">
+
+<PieChart width={220} height={220}>
+
+<Pie
+data={sourceData}
+cx="50%"
+cy="50%"
+innerRadius={65}
+outerRadius={90}
+dataKey="value"
+>
+
+{sourceData.map((entry, index) => (
+<Cell key={index} fill={COLORS[index]} />
+))}
+
+</Pie>
+
+</PieChart>
+
+
+<div className="space-y-3">
+
+{sourceData.map((item, index) => (
+<div key={index} className="flex items-center gap-3 text-sm">
+
+<div
+className="w-3 h-3 rounded-full"
+style={{ backgroundColor: COLORS[index] }}
+></div>
+
+<span className="text-gray-700">{item.name}</span>
+
+<span className="text-gray-400">{item.value}%</span>
+
+</div>
+))}
+
+</div>
+
+</div>
+
+</div>
+
+
+{/* Top Countries + URLs */}
+<div className="space-y-6">
+
+<div>
+
+<h3 className="text-lg font-semibold mb-3">
+Top Countries
+</h3>
+
+<div className="space-y-3 text-sm">
+
+<div className="flex justify-between border-b pb-2">
+<span>United States</span>
+<span>19,873</span>
+</div>
+
+<div className="flex justify-between border-b pb-2">
+<span>United Kingdom</span>
+<span>6,421</span>
+</div>
+
+<div className="flex justify-between border-b pb-2">
+<span>India</span>
+<span>5,678</span>
+</div>
+
+</div>
+
+</div>
+
+
+<div>
+
+<h3 className="text-lg font-semibold mb-3">
+Top URLs
+</h3>
+
+<div className="space-y-2 text-sm">
+
+<div className="flex justify-between">
+<span>techstore.com/products</span>
+<span>54,345</span>
+</div>
+
+<div className="flex justify-between">
+<span>techstore.com/blog</span>
+<span>31,217</span>
+</div>
+
+<div className="flex justify-between">
+<span>techstore.com/about</span>
+<span>15,876</span>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
 )}
 
     </div>

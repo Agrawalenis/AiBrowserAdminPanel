@@ -15,6 +15,7 @@ import Downloads from "./Pages/user/Downloads";
 import Profile from "./Pages/user/Profile";
 import AdminDashboard from "./Pages/Dashboard/AdminDashboard";
 import Trendings from "./Pages/Trending/Trendings";
+import AllWebsites from "./Pages/AllWebsites/AllWebsites";
 
 const AppContent: React.FC = () => {
   const [activePage, setActivePage] = useState("All Users");
@@ -46,6 +47,7 @@ const AppContent: React.FC = () => {
       <div className="flex-1 overflow-y-auto p-3 pl-0">
         <Routes>
           <Route path="/" element={<AllUsers />} />
+          <Route path="/websites" element={<AllWebsites />} />
           <Route path="/dashboard" element={<AdminDashboard />} />
           <Route path="/users/:userId" element={<UserProfile />} />
           <Route path="/employees/:id" element={<EmployeeDetails />} />

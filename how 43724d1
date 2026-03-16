@@ -1,0 +1,57 @@
+* [33m43724d1[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m add AllWebsites page
+*   [33mfdc722d[m resolve merge and add trending pages
+[32m|[m[33m\[m  
+[32m|[m * [33m621fc6f[m added  trending topic page in sidebarc and merge it with master branch
+[32m|[m [33m|[m * [33m5d0ffbc[m[33m ([m[1;35mrefs/stash[m[33m)[m WIP on master: 5f6e9af Updated dashboard UI and fixed scroll issue
+[32m|[m [33m|[m[32m/[m[35m|[m 
+[32m|[m[32m/[m[33m|[m [35m|[m 
+[32m|[m [33m|[m * [33m75d027b[m index on master: 5f6e9af Updated dashboard UI and fixed scroll issue
+[32m|[m [33m|[m[32m/[m  
+[32m|[m[32m/[m[33m|[m   
+* [33m|[m [33m5f6e9af[m Updated dashboard UI and fixed scroll issue
+[33m|[m[33m/[m  
+* [33mee5ea14[m added new feature
+[35m|[m *   [33m0c61457[m[33m ([m[1;31morigin/rohini[m[33m)[m Merge branch 'master' into rohini
+[35m|[m [36m|[m[35m\[m  
+[35m|[m [36m|[m[35m/[m  
+[35m|[m[35m/[m[36m|[m   
+* [36m|[m   [33md483e74[m Merge pull request #2 from Agrawalenis/ritika-dev
+[1;32m|[m[1;33m\[m [36m\[m  
+[1;32m|[m * [36m\[m   [33m91212f3[m[33m ([m[1;31morigin/ritika-dev[m[33m)[m updates done
+[1;32m|[m [1;34m|[m[1;35m\[m [36m\[m  
+[1;32m|[m * [1;35m|[m [36m|[m [33mebcf77b[m  updated employeedetails, leave, attendance, projects.tsx
+[1;32m|[m * [1;35m|[m [36m|[m   [33m0aab609[m Merge branch 'Yuvanth' into ritika-dev
+[1;32m|[m [1;36m|[m[31m\[m [1;35m\[m [36m\[m  
+[1;32m|[m [1;36m|[m * [1;35m\[m [36m\[m   [33m5bad860[m added
+[1;32m|[m [1;36m|[m [32m|[m[33m\[m [1;35m\[m [36m\[m  
+[1;32m|[m * [32m|[m [33m|[m [1;35m|[m [36m|[m [33m44273fa[m WIP: local edits to employee pages (before merging Yuvanth)
+[1;32m|[m * [32m|[m [33m|[m [1;35m|[m [36m|[m [33m2b835f1[m Updated EmployeeDetails and SideOption with icons, increased font size, changing font family
+[1;32m|[m [32m|[m[32m/[m [33m/[m [1;35m/[m [36m/[m  
+[1;32m|[m * [33m|[m [1;35m|[m [36m|[m [33mec7f57c[m Updated EmployeeDetails and SideOption with new icons, layout, and Lexend typography
+[1;32m|[m * [33m|[m [1;35m|[m [36m|[m [33medfc14c[m Updated employee profile layout and routes: - Fixed routing and layout alignment - Made PersonalInfo, ProfessionalInfo, Documents, and AccountAccess dynamic - Added edit mode toggle and minor UI fixes
+* [33m|[m [33m|[m [1;35m|[m [36m|[m   [33mac0cb00[m Merge pull request #1 from Agrawalenis/Yuvanth
+[34m|[m[35m\[m [33m\[m [33m\[m [1;35m\[m [36m\[m  
+[34m|[m * [33m|[m [33m|[m [1;35m|[m [36m|[m [33me3ef71d[m[33m ([m[1;31morigin/Yuvanth[m[33m)[m Completed the Dashboard Section
+[34m|[m [1;35m|[m [33m|[m[1;35m_[m[33m|[m[1;35m/[m [36m/[m  
+[34m|[m [1;35m|[m[1;35m/[m[33m|[m [33m|[m [36m|[m   
+[34m|[m * [33m|[m [33m|[m [36m|[m [33mcd69b17[m Changes made in Bookmarks screen
+[34m|[m * [33m|[m [33m|[m [36m|[m [33m84a80ae[m Updated Reema mam changes
+[34m|[m [33m|[m [33m|[m[33m/[m [36m/[m  
+[34m|[m [33m|[m[33m/[m[33m|[m [36m|[m   
+[34m|[m * [33m|[m [36m|[m [33md03fdd5[m Updated the Downloads Files and Fixed the error
+[34m|[m * [33m|[m [36m|[m [33m215865f[m Updated EmployeeDetails and SideOption with icons, increased font size, changing font family
+[34m|[m * [33m|[m [36m|[m [33m29418b4[m Updated EmployeeDetails and SideOption with new icons, layout, and Lexend typography
+[34m|[m * [33m|[m [36m|[m [33m600b300[m Push the code
+[34m|[m * [33m|[m [36m|[m [33m0a0e9c3[m Updated the Downloads Files and Fixed the error
+[34m|[m * [33m|[m [36m|[m [33m05a7295[m Updated employee profile layout and routes: - Fixed routing and layout alignment - Made PersonalInfo, ProfessionalInfo, Documents, and AccountAccess dynamic - Added edit mode toggle and minor UI fixes
+[34m|[m * [33m|[m [36m|[m [33m8cac8e7[m Made Changes
+[34m|[m [33m|[m[33m/[m [36m/[m  
+[34m|[m * [36m/[m [33m9e0eb0a[m Completed the allusers and allemployees
+[34m|[m[34m/[m [36m/[m  
+[34m|[m * [33m71b9366[m second commit
+[34m|[m[34m/[m  
+* [33m554ed6d[m[33m ([m[1;31morigin/jaya[m[33m, [m[1;31morigin/Anil[m[33m)[m first commit
+* [33m4ddc4cf[m[33m ([m[1;31morigin/Anil-Sahu[m[33m)[m Save work
+* [33md359725[m All Employees
+* [33m33b4709[m Finished the AllUsers and User Profile
+* [33m21d1895[m[33m ([m[1;31morigin/Jaya[m[33m)[m intial

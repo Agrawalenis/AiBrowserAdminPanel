@@ -1,5 +1,5 @@
 import './index.css'
-import React, { useEffect, useRef, useState } from "react";
+import  { useEffect, useRef, useState } from "react";
 import Topbar from "../../Components/layout/Topbar";
 import { Search, Plus, SlidersHorizontal, MoreHorizontal, Eye, Edit, BarChart, Ban, Trash } from "lucide-react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
@@ -141,38 +141,20 @@ const websites = [
   }
 ];
 
-const analyticsData: any = {
-  "techstore.com": {
-    visitors: "42,156",
-    visitorsChange: "-8.5%",
-    pageviews: "132,479",
-    pageviewsChange: "+12.4%",
-    session: "3m 47s",
-    sessionChange: "-2.1%",
-    bounce: "37.6%",
-    bounceChange: "-1.5%"
-  },
-  "travelbliss.com": {
-    visitors: "37,842",
-    visitorsChange: "+5.2%",
-    pageviews: "98,214",
-    pageviewsChange: "+6.3%",
-    session: "4m 12s",
-    sessionChange: "+1.2%",
-    bounce: "34.2%",
-    bounceChange: "-2.4%"
-  }
-};
+
 
 const AllWebsites = () => {
 
-  const [page, setPage] = useState(1);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [rowsPerPage, setRowsPerPage] = useState(4);
   const [openMenu, setOpenMenu] = useState<number | null>(null);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const [showBlockModal, setShowBlockModal] = useState(false);
 const [selectedSite, setSelectedSite] = useState<any>(null);
 const [showAnalytics, setShowAnalytics] = useState(false);
+const [currentPage, setCurrentPage] = useState(1);
+
+
+
 
 
 
@@ -197,15 +179,27 @@ const [showAnalytics, setShowAnalytics] = useState(false);
   setOpenMenu(openMenu === index ? null : index);
 };
 
-  const totalPages = 4;
+
+
 
   const handlePrev = () => {
-    if (page > 1) setPage(page - 1);
-  };
+  if (currentPage > 1) {
+    setCurrentPage(currentPage - 1);
+  }
+};
 
-  const handleNext = () => {
-    if (page < totalPages) setPage(page + 1);
-  };
+const handleNext = () => {
+  if (currentPage < totalPages) {
+    setCurrentPage(currentPage + 1);
+  }
+};
+
+ const totalPages = Math.ceil(websites.length / rowsPerPage);
+
+const indexOfLastRow = currentPage * rowsPerPage;
+const indexOfFirstRow = indexOfLastRow - rowsPerPage;
+
+const currentWebsites = websites.slice(indexOfFirstRow, indexOfLastRow);
   return (
     <div className="flex flex-col gap-6">
 
@@ -270,7 +264,7 @@ const [showAnalytics, setShowAnalytics] = useState(false);
 
           <tbody>
 
-            {websites.slice(0, rowsPerPage).map((site, index) => (
+            {currentWebsites.map((site, index) => (
               <tr key={index} className="border-t hover:bg-gray-50">
                 {/* Checkbox */}
                 <td className="p-4">
@@ -405,16 +399,18 @@ className="flex items-center gap-2 w-full px-4 py-2 hover:bg-red-50 text-red-600
             onChange={(e) => setRowsPerPage(Number(e.target.value))}
             className="border rounded-md px-2 py-1"
           >
-            <option value={5}>5</option>
-            <option value={10}>10</option>
-            <option value={20}>20</option>
-            <option value={30}>30</option>
+            <option value={4}>4</option>
+            <option value={8}>8</option>
+            <option value={12}>12</option>
+            <option value={36}>36</option>
           </select>
         </div>
 
         {/* Center Section */}
         <span className="text-sm text-gray-500">
-          Showing 1 to {rowsPerPage} out of {websites.length} records
+          Showing {indexOfFirstRow + 1} to 
+{Math.min(indexOfLastRow, websites.length)} 
+out of {websites.length} records
         </span>
 
         {/* Right Section */}
@@ -427,15 +423,16 @@ className="flex items-center gap-2 w-full px-4 py-2 hover:bg-red-50 text-red-600
             <FaChevronLeft />
           </button>
 
-          {[1, 2, 3, 4].map((num) => (
-            <button
-              key={num}
-              onClick={() => setPage(num)}
-              className={`px-3 py-1 border rounded ${page === num ? "bg-blue-500 text-white" : ""
-                }`}
-            >
-              {num}
-            </button>
+        {Array.from({ length: totalPages }, (_, i) => i + 1).map((num) => (
+          <button
+  key={num}
+  onClick={() => setCurrentPage(num)}
+  className={`px-3 py-1 border rounded ${
+    currentPage === num ? "bg-blue-500 text-white" : ""
+  }`}
+>
+  {num}
+</button>
           ))}
 
           <button

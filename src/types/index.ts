@@ -216,3 +216,11 @@ export interface TrendingTopic {
   reach: string;
   image: string;
 }
+
+
+export interface UpcomingModule {
+  id: number;
+  title: string;
+  description: string;
+  status: "Planned" | "In Progress" | "Completed";
+}

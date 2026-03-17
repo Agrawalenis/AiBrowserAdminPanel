@@ -92,7 +92,7 @@ const Trendings: React.FC = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
 
-  const itemsPerPage = 6;
+  const itemsPerPage = 8;
 
   const totalPages = Math.ceil(topics.length / itemsPerPage);
 

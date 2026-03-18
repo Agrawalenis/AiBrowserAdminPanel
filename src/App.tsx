@@ -17,6 +17,7 @@ import AdminDashboard from "./Pages/Dashboard/AdminDashboard";
 import Trendings from "./Pages/Trending/Trendings";
 import AllWebsites from "./Pages/AllWebsites/AllWebsites";
 import UpcomingFeatures from "./Pages/UpcomingModules/UpcomingFeatures";
+import AllDepartments from "./Pages/AllDepartments/Alldepartments";
 
 const AppContent: React.FC = () => {
   const [activePage, setActivePage] = useState("All Users");
@@ -55,6 +56,7 @@ const AppContent: React.FC = () => {
           <Route path="/all-employees" element={<AllEmployees/>}/>
           <Route path="/trending" element={<Trendings/>} />
           <Route path="/upcoming" element={<UpcomingFeatures/>} />
+          <Route path="/departments" element={<AllDepartments/>}/>
           <Route path="/users/:userId/profile" element={<Profile />} />
           <Route path="/users/:userId/downloads" element={<Downloads />} />
           <Route path="/users/:userId/bookmarks" element={<Bookmarks />} />

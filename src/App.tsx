@@ -18,6 +18,7 @@ import Trendings from "./Pages/Trending/Trendings";
 import AllWebsites from "./Pages/AllWebsites/AllWebsites";
 import UpcomingFeatures from "./Pages/UpcomingModules/UpcomingFeatures";
 import AllDepartments from "./Pages/AllDepartments/Alldepartments";
+import DepartmentDetails from "./Pages/AllDepartments/DepartmentDetails";
 
 const AppContent: React.FC = () => {
   const [activePage, setActivePage] = useState("All Users");
@@ -57,6 +58,7 @@ const AppContent: React.FC = () => {
           <Route path="/trending" element={<Trendings/>} />
           <Route path="/upcoming" element={<UpcomingFeatures/>} />
           <Route path="/departments" element={<AllDepartments/>}/>
+          <Route path="/departments/:deptName" element={<DepartmentDetails />} />
           <Route path="/users/:userId/profile" element={<Profile />} />
           <Route path="/users/:userId/downloads" element={<Downloads />} />
           <Route path="/users/:userId/bookmarks" element={<Bookmarks />} />

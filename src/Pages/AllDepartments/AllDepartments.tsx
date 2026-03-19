@@ -1,114 +1,170 @@
-import React, { useState, useMemo } from "react";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import Topbar from "../../Components/layout/Topbar";
-import Pagination from "../../Components/table/Pagination";
-import type { Department } from "../../types";
-
-const departmentsData: Department[] = [
-  { id: "D001", name: "Development", head: "John Doe", totalEmployees: 25, status: "Active" },
-  { id: "D002", name: "Design", head: "Jane Smith", totalEmployees: 15, status: "Active" },
-  { id: "D003", name: "HR", head: "Robert Johnson", totalEmployees: 8, status: "Active" },
-  { id: "D004", name: "Sales", head: "Emily Davis", totalEmployees: 12, status: "Inactive" },
-  { id: "D005", name: "Marketing", head: "Michael Wilson", totalEmployees: 10, status: "Active" },
-  { id: "D006", name: "Finance", head: "Sarah Brown", totalEmployees: 6, status: "Inactive" },
-  { id: "D007", name: "Support", head: "David Taylor", totalEmployees: 9, status: "Active" },
-  { id: "D008", name: "QA", head: "Emma Martinez", totalEmployees: 7, status: "Active" },
+import { FiSearch } from "react-icons/fi";
+const departments = [
+  {
+    name: "Design Department",
+    members: 20,
+    employees: [
+      { name: "Dianne Russell", role: "Lead UI/UX Designer", avatarUrl: "https://i.pravatar.cc/150?img=1" },
+      { name: "Arlene McCoy", role: "Sr. UI/UX Designer", avatarUrl: "https://i.pravatar.cc/150?img=2" },
+      { name: "Cody Fisher", role: "UI/UX Designer", avatarUrl: "https://i.pravatar.cc/150?img=3" },
+      { name: "Joe Boan", role: "UI/UX Designer", avatarUrl: "https://i.pravatar.cc/150?img=4" },
+      { name: "Keshav Brand", role: "UI/UX Designer", avatarUrl: "https://i.pravatar.cc/150?img=5" }
+    ]
+  },
+  {
+    name: "Sales Department",
+    members: 14,
+    employees: [
+      { name: "Darrell Steward", role: "Sr. Sales Manager", avatarUrl: "https://i.pravatar.cc/150?img=6" },
+      { name: "Kristin Watson", role: "Sales Manager", avatarUrl: "https://i.pravatar.cc/150?img=7" },
+      { name: "Nilson Stark", role: "Sales", avatarUrl: "https://i.pravatar.cc/150?img=8" },
+      { name: "Naruto Uzumaki", role: "BDE", avatarUrl: "https://i.pravatar.cc/150?img=9" },
+      { name: "Sasuke Uchia", role: "BDE", avatarUrl: "https://i.pravatar.cc/150?img=10" }
+    ]
+  },
+  {
+    name: "Project Manager Department",
+    members: 18,
+    employees: [
+      { name: "Leslie Alexander", role: "Sr. Project Manager", avatarUrl: "https://i.pravatar.cc/150?img=11" },
+      { name: "Ronald Richards", role: "Project Manager", avatarUrl: "https://i.pravatar.cc/150?img=12" },
+      { name: "Sakura Haruno", role: "Project Manager", avatarUrl: "https://i.pravatar.cc/150?img=13" },
+      { name: "Hinata Hyuga", role: "Project Manager", avatarUrl: "https://i.pravatar.cc/150?img=14" },
+      { name: "Eno Yamanaka", role: "Project Manager", avatarUrl: "https://i.pravatar.cc/150?img=15" }
+    ]
+  },
+  {
+    name: "Marketing Department",
+    members: 10,
+    employees: [
+      { name: "Wade Warren", role: "Sr. Marketing Manager", avatarUrl: "https://i.pravatar.cc/150?img=16" },
+      { name: "Brooklyn Simmons", role: "Marketing Manager", avatarUrl: "https://i.pravatar.cc/150?img=17" },
+      { name: "Tony Stark", role: "Marketing Coordinator", avatarUrl: "https://i.pravatar.cc/150?img=18" },
+      { name: "Steve Rodger", role: "Marketing", avatarUrl: "https://i.pravatar.cc/150?img=19" },
+      { name: "Madara Uchia", role: "Marketing", avatarUrl: "https://i.pravatar.cc/150?img=20" }
+    ]
+  }
 ];
 
 const AllDepartments: React.FC = () => {
-  const [search, setSearch] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const itemsPerPage = 8;
-
-  // 🔍 Search filter
-  const filteredData = useMemo(() => {
-    return departmentsData.filter((dept) =>
-      dept.name.toLowerCase().includes(search.toLowerCase())
-    );
-  }, [search]);
-
-  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
-
-  const currentData = filteredData.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
-  );
+  const navigate = useNavigate();
 
   return (
     <div className="w-full flex flex-col bg-white">
 
+      {/* Topbar */}
       <Topbar
-        title={<div className="text-[20px] font-semibold">All Departments</div>}
-        subtitle="Manage all departments in your organization"
+        title={
+          <div className="text-[20px] font-semibold text-[#16151C]">
+            All Departments
+          </div>
+        }
+        subtitle="All Departments Information"
         subtitleClassName="text-gray-400 text-sm"
       />
+       <div className="border border-gray-200 rounded-lg p-0">
+      <div className="p-4">
+  <div className="relative w-[320px]">
 
-      <div className="mt-4 border rounded-lg p-4">
+    {/* Search Icon */}
+      <FiSearch className="absolute left-4 top-1/2 text-gray-500 -translate-y-1/2 w-7 h-7" />
 
-        {/* 🔍 Search + Filter */}
-        <div className="flex justify-between mb-4">
-          <input
-            type="text"
-            placeholder="Search"
-            className="border rounded-md px-3 py-2 w-[250px] text-sm"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
+    {/* Input */}
+    <input
+      type="text"
+      placeholder="Search"
+      className="w-full pl-11 pr-4 pl-12 py-3 rounded-xl border border-1
+      focus:outline-none focus:ring-2 focus:ring-purple-500"
+    />
 
-          <button className="border px-4 py-2 rounded-md text-sm">
-            Filter
-          </button>
-        </div>
+  </div>
+</div>
 
-        {/* 📊 Table */}
-        <div className="w-full">
-          <table className="w-full text-left text-sm">
-            <thead className="text-gray-400 border-b">
-              <tr>
-                <th className="py-2">Department Name</th>
-                <th>Department ID</th>
-                <th>Head</th>
-                <th>Total Employees</th>
-                <th>Status</th>
-              </tr>
-            </thead>
+      {/* Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 p-4">
 
-            <tbody>
-              {currentData.map((dept) => (
-                <tr key={dept.id} className="border-b hover:bg-gray-50">
-                  <td className="py-3 font-medium">{dept.name}</td>
-                  <td>{dept.id}</td>
-                  <td>{dept.head}</td>
-                  <td>{dept.totalEmployees}</td>
-                  <td>
-                    <span
-                      className={`text-xs px-2 py-1 rounded ${
-                        dept.status === "Active"
-                          ? "bg-green-100 text-green-600"
-                          : "bg-gray-200 text-gray-500"
-                      }`}
-                    >
-                      {dept.status}
-                    </span>
-                  </td>
-                </tr>
+        {departments.map((dept, i) => (
+          <div
+            key={i}
+            className="border border-gray-200 rounded-xl p-5 bg-white hover:shadow-md transition"
+          >
+
+            {/* Header */}
+            <div className="flex justify-between items-center mb-4 border-b-2 pb-[12px]">
+              <div>
+                <h2 className="text-[16px] font-semibold text-[#16151C]">
+                  {dept.name}
+                </h2>
+                <p className="text-[12px] text-gray-400">
+                  {dept.members} Members
+                </p>
+              </div>
+
+              <button
+                className="text-purple-600 text-sm font-medium hover:underline"
+                onClick={() => navigate(`/departments/${dept.name}`)}
+              >
+                View All
+              </button>
+            </div>
+
+            {/* Employees */}
+            <div className="space-y-3">
+
+              {dept.employees.map((emp, index) => (
+                <div
+                  key={index}
+                  className="flex items-center justify-between hover:bg-gray-50 p-2 rounded-lg cursor-pointer"
+                >
+
+                  <div className="flex items-center gap-3">
+
+                    {/* Avatar */}
+                    <div className="h-9 w-9 rounded-full bg-gray-300 flex items-center justify-center overflow-hidden">
+                      {emp.avatarUrl ? (
+                        <img
+                          src={emp.avatarUrl}
+                          alt={emp.name}
+                          className="h-full w-full object-cover"
+                        />
+                      ) : (
+                        <span className="text-xs text-gray-700 font-medium">
+                          {emp.name
+                            .split(" ")
+                            .map((n) => n[0])
+                            .join("")
+                            .toUpperCase()}
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Name + Role */}
+                    <div>
+                      <p className="text-[16px] text-gray-800 font-semibold">
+                        {emp.name}
+                      </p>
+                      <p className="text-[12px] text-gray-400">
+                        {emp.role}
+                      </p>
+                    </div>
+
+                  </div>
+
+                  <span className="text-3xl">›</span>
+
+                </div>
               ))}
-            </tbody>
-          </table>
-        </div>
 
-        {/* 📄 Pagination */}
-        <div className="mt-4">
-          <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={setCurrentPage}
-            totalItems={filteredData.length}
-            itemsPerPage={itemsPerPage}
-          />
-        </div>
+            </div>
+
+          </div>
+        ))}
 
       </div>
+       </div>
     </div>
   );
 };

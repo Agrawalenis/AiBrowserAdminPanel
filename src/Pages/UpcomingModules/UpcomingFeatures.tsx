@@ -111,7 +111,7 @@ const UpcomingFeatures: React.FC = () => {
           ))}
         </div>
 
-        {/* Pagination */}
+        {/* Pagination
         <div className="mt-6">
           <Pagination
             currentPage={currentPage}
@@ -120,7 +120,7 @@ const UpcomingFeatures: React.FC = () => {
             totalItems={features.length}
             itemsPerPage={itemsPerPage}
           />
-        </div>
+        </div> */}
 
       </div>
     </div>

@@ -1,8 +1,7 @@
 import './index.css'
-import  { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Topbar from "../../Components/layout/Topbar";
 import { Search, Plus, SlidersHorizontal, MoreHorizontal, Eye, Edit, BarChart, Ban, Trash } from "lucide-react";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import {
   AreaChart,
   Area,
@@ -14,7 +13,7 @@ import {
   Pie,
   Cell
 } from "recharts";
-
+import Pagination from "../../Components/table/Pagination"
 
 
 const trafficData = [
@@ -149,9 +148,9 @@ const AllWebsites = () => {
   const [openMenu, setOpenMenu] = useState<number | null>(null);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const [showBlockModal, setShowBlockModal] = useState(false);
-const [selectedSite, setSelectedSite] = useState<any>(null);
-const [showAnalytics, setShowAnalytics] = useState(false);
-const [currentPage, setCurrentPage] = useState(1);
+  const [selectedSite, setSelectedSite] = useState<any>(null);
+  const [showAnalytics, setShowAnalytics] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
 
 
 
@@ -159,47 +158,47 @@ const [currentPage, setCurrentPage] = useState(1);
 
 
   useEffect(() => {
-  const handleClickOutside = (event: MouseEvent) => {
-    if (
-      dropdownRef.current &&
-      !dropdownRef.current.contains(event.target as Node)
-    ) {
-      setOpenMenu(null);
-    }
-  };
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setOpenMenu(null);
+      }
+    };
 
-  document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
 
-  return () => {
-    document.removeEventListener("mousedown", handleClickOutside);
-  };
-}, []);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const toggleMenu = (index: number) => {
-  setOpenMenu(openMenu === index ? null : index);
-};
+    setOpenMenu(openMenu === index ? null : index);
+  };
 
 
 
 
-  const handlePrev = () => {
-  if (currentPage > 1) {
-    setCurrentPage(currentPage - 1);
+ 
+
+  const totalPages = Math.ceil(websites.length / rowsPerPage);
+
+  const indexOfLastRow = currentPage * rowsPerPage;
+  const indexOfFirstRow = indexOfLastRow - rowsPerPage;
+
+  const currentWebsites = websites.slice(indexOfFirstRow, indexOfLastRow);
+
+  useEffect(() => {
+  setCurrentPage(1);
+}, [rowsPerPage]);
+
+useEffect(() => {
+  if (currentPage > totalPages) {
+    setCurrentPage(totalPages);
   }
-};
-
-const handleNext = () => {
-  if (currentPage < totalPages) {
-    setCurrentPage(currentPage + 1);
-  }
-};
-
- const totalPages = Math.ceil(websites.length / rowsPerPage);
-
-const indexOfLastRow = currentPage * rowsPerPage;
-const indexOfFirstRow = indexOfLastRow - rowsPerPage;
-
-const currentWebsites = websites.slice(indexOfFirstRow, indexOfLastRow);
+}, [totalPages]);
   return (
     <div className="flex flex-col gap-6">
 
@@ -265,7 +264,7 @@ const currentWebsites = websites.slice(indexOfFirstRow, indexOfLastRow);
           <tbody>
 
             {currentWebsites.map((site, index) => (
-              <tr key={index} className="border-t hover:bg-gray-50">
+              <tr key={site.domain} className="border-t hover:bg-gray-50">
                 {/* Checkbox */}
                 <td className="p-4">
                   <input type="checkbox" />
@@ -305,8 +304,8 @@ const currentWebsites = websites.slice(indexOfFirstRow, indexOfLastRow);
                         ${site.status === "Active"
                         ? "bg-green-100 text-green-600"
                         : site.status === "Inactive"
-                        ? "bg-gray-100 text-gray-500"
-                        : "bg-red-100 text-red-600"
+                          ? "bg-gray-100 text-gray-500"
+                          : "bg-red-100 text-red-600"
                       }`}
                   >
                     {site.status}
@@ -321,62 +320,62 @@ const currentWebsites = websites.slice(indexOfFirstRow, indexOfLastRow);
 
                 <td className="relative">
 
-  <MoreHorizontal
-    className="cursor-pointer"
-    size={20}
-    onClick={() => toggleMenu(index)}
-  />
+                  <MoreHorizontal
+                    className="cursor-pointer"
+                    size={20}
+                    onClick={() => toggleMenu(index)}
+                  />
 
-  {openMenu === index && (
-        <div
-      ref={dropdownRef}
-      className="absolute right-0 top-full mt-2 w-52 bg-white border rounded-lg shadow-lg z-50
+                  {openMenu === index && (
+                    <div
+                      ref={dropdownRef}
+                      className="absolute right-0 top-full mt-2 w-52 bg-white border rounded-lg shadow-lg z-50
       animate-fadeIn"
-    >
+                    >
 
 
-      <button className="flex items-center gap-2 w-full px-4 py-2 hover:bg-gray-100 text-left">
-        <Eye size={16}/>
-        View detail
-      </button>
+                      <button className="flex items-center gap-2 w-full px-4 py-2 hover:bg-gray-100 text-left">
+                        <Eye size={16} />
+                        View detail
+                      </button>
 
-      <button className="flex items-center gap-2 w-full px-4 py-2 hover:bg-gray-100 text-left">
-        <Edit size={16}/>
+                      <button className="flex items-center gap-2 w-full px-4 py-2 hover:bg-gray-100 text-left">
+                        <Edit size={16} />
 
-        Edit
-      </button>
+                        Edit
+                      </button>
 
-      <button
-onClick={() => {
-setSelectedSite(site);
-setShowAnalytics(true);
-setOpenMenu(null);
-}}
-className="flex items-center gap-2 w-full px-4 py-2 hover:bg-gray-100 text-left"
->
-<BarChart size={16}/>
-View Analytics
-</button>
+                      <button
+                        onClick={() => {
+                          setSelectedSite(site);
+                          setShowAnalytics(true);
+                          setOpenMenu(null);
+                        }}
+                        className="flex items-center gap-2 w-full px-4 py-2 hover:bg-gray-100 text-left"
+                      >
+                        <BarChart size={16} />
+                        View Analytics
+                      </button>
 
-      <button
-  onClick={() => {
-    setSelectedSite(site);
-    setShowBlockModal(true);
-  }}
-className="flex items-center gap-2 w-full px-4 py-2 hover:bg-red-50 text-red-600 text-left">
-  <Ban size={16} />
-  Block Analytics
-</button>
+                      <button
+                        onClick={() => {
+                          setSelectedSite(site);
+                          setShowBlockModal(true);
+                        }}
+                        className="flex items-center gap-2 w-full px-4 py-2 hover:bg-red-50 text-red-600 text-left">
+                        <Ban size={16} />
+                        Block Analytics
+                      </button>
 
-      <button className="flex items-center gap-2 w-full px-4 py-2 hover:bg-red-50 text-red-600 text-left">
-        <Trash size={16}/>
-        Delete
-      </button>
+                      <button className="flex items-center gap-2 w-full px-4 py-2 hover:bg-red-50 text-red-600 text-left">
+                        <Trash size={16} />
+                        Delete
+                      </button>
 
-    </div>
-  )}
+                    </div>
+                  )}
 
-</td>
+                </td>
 
               </tr>
             ))}
@@ -387,362 +386,312 @@ className="flex items-center gap-2 w-full px-4 py-2 hover:bg-red-50 text-red-600
 
       </div>
 
-      {/* Pagination */}
-      <div className="flex items-center justify-between text-sm text-gray-500 m-5">
-
-        {/* Left Section */}
-        <div className="flex items-center gap-2">
-          <span>Showing</span>
-
-          <select
-            value={rowsPerPage}
-            onChange={(e) => setRowsPerPage(Number(e.target.value))}
-            className="border rounded-md px-2 py-1"
-          >
-            <option value={4}>4</option>
-            <option value={8}>8</option>
-            <option value={12}>12</option>
-            <option value={36}>36</option>
-          </select>
-        </div>
-
-        {/* Center Section */}
-        <span className="text-sm text-gray-500">
-          Showing {indexOfFirstRow + 1} to 
-{Math.min(indexOfLastRow, websites.length)} 
-out of {websites.length} records
-        </span>
-
-        {/* Right Section */}
-        <div className="flex items-center gap-2">
-
-          <button
-            onClick={handlePrev}
-            className="px-3 py-1 border rounded"
-          >
-            <FaChevronLeft />
-          </button>
-
-        {Array.from({ length: totalPages }, (_, i) => i + 1).map((num) => (
-          <button
-  key={num}
-  onClick={() => setCurrentPage(num)}
-  className={`px-3 py-1 border rounded ${
-    currentPage === num ? "bg-blue-500 text-white" : ""
-  }`}
->
-  {num}
-</button>
-          ))}
-
-          <button
-            onClick={handleNext}
-            className="px-3 py-1 border rounded"
-          >
-            <FaChevronRight />
-          </button>
-
-        </div>
-
-      </div>
-      {showBlockModal && selectedSite && (
-  <div className="fixed inset-0 flex items-center justify-center bg-black/30 z-50">
-
-    <div className="bg-white w-[500px] rounded-xl shadow-xl p-6 modal-animation">
-
-      {/* Title */}
-      <div className="flex items-center gap-3 mb-4">
-        <div className="text-red-500 text-2xl">⚠</div>
-
-        <h2 className="text-xl font-semibold">
-          Block Website?
-        </h2>
-      </div>
-
-      {/* Description */}
-      <p className="text-gray-500 text-sm mb-6">
-        Are you sure you want to block the website
-        <span className="font-semibold"> "{selectedSite.name}" </span>
-        ({selectedSite.domain})? Blocking will prevent the site from being
-        accessed and will deactivate any active services.
-      </p>
-
-      {/* Website Info Card */}
-      <div className="flex items-center gap-4 bg-gray-50 p-4 rounded-lg mb-6">
-
-        <div
-          className={`w-10 h-10 rounded-lg flex items-center justify-center text-white ${selectedSite.iconColor}`}
-        >
-          🌐
-        </div>
-
-        <div>
-          <p className="font-semibold">{selectedSite.name}</p>
-          <p className="text-sm text-gray-400">{selectedSite.domain}</p>
-        </div>
-
-      </div>
-
-      {/* Buttons */}
-      <div className="flex justify-end gap-3">
-
-        <button
-          onClick={() => setShowBlockModal(false)}
-          className="px-4 py-2 border rounded-lg"
-        >
-          Cancel
-        </button>
-
-        <button
-          className="px-4 py-2 bg-red-500 text-white rounded-lg"
-          onClick={() => {
-            console.log("Website Blocked:", selectedSite.name);
-            setShowBlockModal(false);
-          }}
-        >
-          Block
-        </button>
-
-      </div>
-
-    </div>
-
-  </div>
-)}
-{showAnalytics && selectedSite && (
-<div className="fixed inset-0 flex items-center justify-center bg-black/40 z-50 px-6 py-6">
-
-<div className="bg-white w-full max-w-[1300px] h-[92vh] rounded-2xl shadow-xl overflow-y-auto">
-
-{/* Header */}
-<div className="flex justify-between items-center px-8 py-5 border-b">
-
-<h2 className="text-2xl font-semibold text-gray-800">
-View Analytics
-</h2>
-
-<button
-onClick={() => setShowAnalytics(false)}
-className="text-gray-600 hover:text-gray-700 text-xl"
->
-✕
-</button>
-
-</div>
-
-
-{/* Body */}
-<div className="px-8 py-8 space-y-8 h-[calc(100%-100px)]">
-
-
-{/* Website Info */}
-<div className="flex items-center gap-4">
-
-<div className={`w-12 h-12 rounded-lg flex items-center justify-center text-white ${selectedSite.iconColor}`}>
-🌐
-</div>
-
-<div>
-<p className="font-semibold text-lg">{selectedSite.name}</p>
-<p className="text-gray-400">{selectedSite.domain}</p>
-</div>
-
-</div>
-
-
-{/* Analytics Cards */}
-<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-
-<div className="border rounded-xl p-5 hover:shadow-sm transition">
-<p className="text-gray-500 text-sm mb-1">Total Visitors</p>
-<p className="text-2xl font-semibold">42,156</p>
-</div>
-
-<div className="border rounded-xl p-5 hover:shadow-sm transition">
-<p className="text-gray-500 text-sm mb-1">Total Pageviews</p>
-<p className="text-2xl font-semibold">132,479</p>
-</div>
-
-<div className="border rounded-xl p-5 hover:shadow-sm transition">
-<p className="text-gray-500 text-sm mb-1">Avg Session</p>
-<p className="text-2xl font-semibold">3m 47s</p>
-</div>
-
-<div className="border rounded-xl p-5 hover:shadow-sm transition">
-<p className="text-gray-500 text-sm mb-1">Bounce Rate</p>
-<p className="text-2xl font-semibold">37.6%</p>
-</div>
-
-</div>
-
-
-{/* Traffic Overview */}
-<div className="space-y-4">
-
-<h3 className="text-lg font-semibold text-gray-800">
-Traffic Overview
-</h3>
-
-<div className="h-[300px] border rounded-xl p-4 bg-white">
-
-<ResponsiveContainer width="100%" height="100%">
-
-<AreaChart data={trafficData}>
-
-<XAxis dataKey="month" />
-
-<YAxis />
-
-<Tooltip />
-
-<Area
-type="monotone"
-dataKey="visitors"
-stroke="#7C3AED"
-fill="#C4B5FD"
-fillOpacity={0.4}
-strokeWidth={3}
+      <Pagination
+  currentPage={currentPage}
+  totalPages={totalPages}
+  onPageChange={(page) => setCurrentPage(page)}
+  totalItems={websites.length}
+  itemsPerPage={rowsPerPage}
+   onItemsPerPageChange={(value) => setRowsPerPage(value)}
 />
+      {showBlockModal && selectedSite && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black/30 z-50">
 
-</AreaChart>
+          <div className="bg-white w-[500px] rounded-xl shadow-xl p-6 modal-animation">
 
-</ResponsiveContainer>
+            {/* Title */}
+            <div className="flex items-center gap-3 mb-4">
+              <div className="text-red-500 text-2xl">⚠</div>
 
-</div>
+              <h2 className="text-xl font-semibold">
+                Block Website?
+              </h2>
+            </div>
 
-</div>
+            {/* Description */}
+            <p className="text-gray-500 text-sm mb-6">
+              Are you sure you want to block the website
+              <span className="font-semibold"> "{selectedSite.name}" </span>
+              ({selectedSite.domain})? Blocking will prevent the site from being
+              accessed and will deactivate any active services.
+            </p>
 
+            {/* Website Info Card */}
+            <div className="flex items-center gap-4 bg-gray-50 p-4 rounded-lg mb-6">
 
-{/* Bottom Section */}
-<div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+              <div
+                className={`w-10 h-10 rounded-lg flex items-center justify-center text-white ${selectedSite.iconColor}`}
+              >
+                🌐
+              </div>
 
+              <div>
+                <p className="font-semibold">{selectedSite.name}</p>
+                <p className="text-sm text-gray-400">{selectedSite.domain}</p>
+              </div>
 
-{/* Traffic Sources */}
-<div className="space-y-4">
+            </div>
 
-<h3 className="text-lg font-semibold">
-Traffic Sources
-</h3>
+            {/* Buttons */}
+            <div className="flex justify-end gap-3">
 
-<div className="flex items-center gap-8">
+              <button
+                onClick={() => setShowBlockModal(false)}
+                className="px-4 py-2 border rounded-lg"
+              >
+                Cancel
+              </button>
 
-<PieChart width={220} height={220}>
+              <button
+                className="px-4 py-2 bg-red-500 text-white rounded-lg"
+                onClick={() => {
+                  console.log("Website Blocked:", selectedSite.name);
+                  setShowBlockModal(false);
+                }}
+              >
+                Block
+              </button>
 
-<Pie
-data={sourceData}
-cx="50%"
-cy="50%"
-innerRadius={65}
-outerRadius={90}
-dataKey="value"
->
+            </div>
 
-{sourceData.map((entry, index) => (
-<Cell key={index} fill={COLORS[index]} />
-))}
+          </div>
 
-</Pie>
+        </div>
+      )}
+      {showAnalytics && selectedSite && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black/40 z-50 px-6 py-6">
 
-</PieChart>
+          <div className="bg-white w-full max-w-[1300px] h-[92vh] rounded-2xl shadow-xl overflow-y-auto">
 
+            {/* Header */}
+            <div className="flex justify-between items-center px-8 py-5 border-b">
 
-<div className="space-y-3">
+              <h2 className="text-2xl font-semibold text-gray-800">
+                View Analytics
+              </h2>
 
-{sourceData.map((item, index) => (
-<div key={index} className="flex items-center gap-3 text-sm">
+              <button
+                onClick={() => setShowAnalytics(false)}
+                className="text-gray-600 hover:text-gray-700 text-xl"
+              >
+                ✕
+              </button>
 
-<div
-className="w-3 h-3 rounded-full"
-style={{ backgroundColor: COLORS[index] }}
-></div>
-
-<span className="text-gray-700">{item.name}</span>
-
-<span className="text-gray-400">{item.value}%</span>
-
-</div>
-))}
-
-</div>
-
-</div>
-
-</div>
-
-
-{/* Top Countries + URLs */}
-<div className="space-y-6">
-
-<div>
-
-<h3 className="text-lg font-semibold mb-3">
-Top Countries
-</h3>
-
-<div className="space-y-3 text-sm">
-
-<div className="flex justify-between border-b pb-2">
-<span>United States</span>
-<span>19,873</span>
-</div>
-
-<div className="flex justify-between border-b pb-2">
-<span>United Kingdom</span>
-<span>6,421</span>
-</div>
-
-<div className="flex justify-between border-b pb-2">
-<span>India</span>
-<span>5,678</span>
-</div>
-
-</div>
-
-</div>
+            </div>
 
 
-<div>
+            {/* Body */}
+            <div className="px-8 py-8 space-y-8 h-[calc(100%-100px)]">
 
-<h3 className="text-lg font-semibold mb-3">
-Top URLs
-</h3>
 
-<div className="space-y-2 text-sm">
+              {/* Website Info */}
+              <div className="flex items-center gap-4">
 
-<div className="flex justify-between">
-<span>techstore.com/products</span>
-<span>54,345</span>
-</div>
+                <div className={`w-12 h-12 rounded-lg flex items-center justify-center text-white ${selectedSite.iconColor}`}>
+                  🌐
+                </div>
 
-<div className="flex justify-between">
-<span>techstore.com/blog</span>
-<span>31,217</span>
-</div>
+                <div>
+                  <p className="font-semibold text-lg">{selectedSite.name}</p>
+                  <p className="text-gray-400">{selectedSite.domain}</p>
+                </div>
 
-<div className="flex justify-between">
-<span>techstore.com/about</span>
-<span>15,876</span>
-</div>
+              </div>
 
-</div>
 
-</div>
+              {/* Analytics Cards */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 
-</div>
+                <div className="border rounded-xl p-5 hover:shadow-sm transition">
+                  <p className="text-gray-500 text-sm mb-1">Total Visitors</p>
+                  <p className="text-2xl font-semibold">42,156</p>
+                </div>
 
-</div>
+                <div className="border rounded-xl p-5 hover:shadow-sm transition">
+                  <p className="text-gray-500 text-sm mb-1">Total Pageviews</p>
+                  <p className="text-2xl font-semibold">132,479</p>
+                </div>
 
-</div>
+                <div className="border rounded-xl p-5 hover:shadow-sm transition">
+                  <p className="text-gray-500 text-sm mb-1">Avg Session</p>
+                  <p className="text-2xl font-semibold">3m 47s</p>
+                </div>
 
-</div>
+                <div className="border rounded-xl p-5 hover:shadow-sm transition">
+                  <p className="text-gray-500 text-sm mb-1">Bounce Rate</p>
+                  <p className="text-2xl font-semibold">37.6%</p>
+                </div>
 
-</div>
-)}
+              </div>
+
+
+              {/* Traffic Overview */}
+              <div className="space-y-4">
+
+                <h3 className="text-lg font-semibold text-gray-800">
+                  Traffic Overview
+                </h3>
+
+                <div className="h-[300px] border rounded-xl p-4 bg-white">
+
+                  <ResponsiveContainer width="100%" height="100%">
+
+                    <AreaChart data={trafficData}>
+
+                      <XAxis dataKey="month" />
+
+                      <YAxis />
+
+                      <Tooltip />
+
+                      <Area
+                        type="monotone"
+                        dataKey="visitors"
+                        stroke="#7C3AED"
+                        fill="#C4B5FD"
+                        fillOpacity={0.4}
+                        strokeWidth={3}
+                      />
+
+                    </AreaChart>
+
+                  </ResponsiveContainer>
+
+                </div>
+
+              </div>
+
+
+              {/* Bottom Section */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+
+
+                {/* Traffic Sources */}
+                <div className="space-y-4">
+
+                  <h3 className="text-lg font-semibold">
+                    Traffic Sources
+                  </h3>
+
+                  <div className="flex items-center gap-8">
+
+                    <PieChart width={220} height={220}>
+
+                      <Pie
+                        data={sourceData}
+                        cx="50%"
+                        cy="50%"
+                        innerRadius={65}
+                        outerRadius={90}
+                        dataKey="value"
+                      >
+
+                        {sourceData.map((entry, index) => (
+                          <Cell key={index} fill={COLORS[index]} />
+                        ))}
+
+                      </Pie>
+
+                    </PieChart>
+
+
+                    <div className="space-y-3">
+
+                      {sourceData.map((item, index) => (
+                        <div key={index} className="flex items-center gap-3 text-sm">
+
+                          <div
+                            className="w-3 h-3 rounded-full"
+                            style={{ backgroundColor: COLORS[index] }}
+                          ></div>
+
+                          <span className="text-gray-700">{item.name}</span>
+
+                          <span className="text-gray-400">{item.value}%</span>
+
+                        </div>
+                      ))}
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+
+                {/* Top Countries + URLs */}
+                <div className="space-y-6">
+
+                  <div>
+
+                    <h3 className="text-lg font-semibold mb-3">
+                      Top Countries
+                    </h3>
+
+                    <div className="space-y-3 text-sm">
+
+                      <div className="flex justify-between border-b pb-2">
+                        <span>United States</span>
+                        <span>19,873</span>
+                      </div>
+
+                      <div className="flex justify-between border-b pb-2">
+                        <span>United Kingdom</span>
+                        <span>6,421</span>
+                      </div>
+
+                      <div className="flex justify-between border-b pb-2">
+                        <span>India</span>
+                        <span>5,678</span>
+                      </div>
+
+                    </div>
+
+                  </div>
+
+
+                  <div>
+
+                    <h3 className="text-lg font-semibold mb-3">
+                      Top URLs
+                    </h3>
+
+                    <div className="space-y-2 text-sm">
+
+                      <div className="flex justify-between">
+                        <span>techstore.com/products</span>
+                        <span>54,345</span>
+                      </div>
+
+                      <div className="flex justify-between">
+                        <span>techstore.com/blog</span>
+                        <span>31,217</span>
+                      </div>
+
+                      <div className="flex justify-between">
+                        <span>techstore.com/about</span>
+                        <span>15,876</span>
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      )}
 
     </div>
-    
+
   );
-  
+
 };
 
 

@@ -232,3 +232,13 @@ export interface Department {
   totalEmployees: number;
   status: "Active" | "Inactive";
 }
+
+
+export interface PaginationProps {
+  currentPage: number;
+  totalPages: number;
+  onPageChange: (page: number) => void;
+  totalItems: number;
+  itemsPerPage: number;
+  onItemsPerPageChange: (value: number) => void; // ✅ ADD THIS
+}

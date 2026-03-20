@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import type { TableColumn, Employee } from '../../types';
 import Topbar from "../../Components/layout/Topbar";
@@ -8,7 +8,6 @@ import Pagination from "../../Components/table/Pagination";
 import FilterPopup from "../../Components/layout/FilterPopup";
 import mockEmployees from "../../mock/employees";
 
-const ITEMS_PER_PAGE = 10;
 
 interface FilterState {
   status: string[];
@@ -21,9 +20,7 @@ interface AllEmployeesProps {
 }
 
 const AllEmployees: React.FC<AllEmployeesProps> = ({ onMount }) => {
-  React.useEffect(() => {
-    if (onMount) onMount();
-  }, [onMount]);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [isFilterPopupOpen, setIsFilterPopupOpen] = useState(false);
@@ -32,19 +29,29 @@ const AllEmployees: React.FC<AllEmployeesProps> = ({ onMount }) => {
     department: [],
     type: []
   });
-  
+
+  useEffect(() => {
+    if (onMount) onMount();
+  }, [onMount]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [rowsPerPage, searchQuery, currentFilters]);
+
+
+
   const columns: TableColumn<Employee>[] = useMemo(() => [
-    { 
-      header: 'Employee Name', 
+    {
+      header: 'Employee Name',
       accessor: 'name',
       className: 'text-[#16151C] font-medium',
       render: (name: string, user: Employee) => (
         <div className="flex items-center">
           <div className="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden mr-2">
             {user.avatarUrl ? (
-              <img 
-                src={user.avatarUrl} 
-                alt={name} 
+              <img
+                src={user.avatarUrl}
+                alt={name}
                 className="h-[36px] w-[36px] object-cover"
               />
             ) : (
@@ -57,28 +64,28 @@ const AllEmployees: React.FC<AllEmployeesProps> = ({ onMount }) => {
         </div>
       )
     },
-    { 
-      header: 'Employee ID', 
+    {
+      header: 'Employee ID',
       accessor: 'id',
-      className: 'text-[#16151C] font-light text-[16px]' 
+      className: 'text-[#16151C] font-light text-[16px]'
     },
-    { 
-      header: 'Department', 
+    {
+      header: 'Department',
       accessor: 'department',
-      className: 'text-[#16151C] font-light text-[16px]' 
+      className: 'text-[#16151C] font-light text-[16px]'
     },
-    { 
-      header: 'Designation', 
+    {
+      header: 'Designation',
       accessor: 'designation',
-      className: 'text-[#16151C] font-light text-[16px]' 
+      className: 'text-[#16151C] font-light text-[16px]'
     },
-    { 
-      header: 'Type', 
+    {
+      header: 'Type',
       accessor: 'type',
-      className: 'text-[#16151C] font-light text-[16px]' 
+      className: 'text-[#16151C] font-light text-[16px]'
     },
-    { 
-      header: 'Status', 
+    {
+      header: 'Status',
       accessor: 'activity',
       className: 'text-[#16151C] font-light text-[16px]',
       render: (value: string) => (
@@ -92,7 +99,7 @@ const AllEmployees: React.FC<AllEmployeesProps> = ({ onMount }) => {
       accessor: 'id',
       render: (_, user) => (
         <div className="flex items-center space-x-2">
-          <button 
+          <button
             className="text-[#16151C] hover:text-gray-700 rounded-full hover:bg-gray-100"
             onClick={(e) => {
               e.stopPropagation();
@@ -102,7 +109,7 @@ const AllEmployees: React.FC<AllEmployeesProps> = ({ onMount }) => {
           >
             <img src="/images/view.png" className="w-5 h-5" alt="View" />
           </button>
-          <button 
+          <button
             className="text-[#16151C] hover:text-gray-700 rounded-full hover:bg-gray-100"
             onClick={(e) => {
               e.stopPropagation();
@@ -112,7 +119,7 @@ const AllEmployees: React.FC<AllEmployeesProps> = ({ onMount }) => {
           >
             <img src="/images/edit.png" className="w-5 h-5 invert" alt="Edit" />
           </button>
-          <button 
+          <button
             className="text-[#16151C] hover:text-gray-700 rounded-full hover:bg-gray-100"
             onClick={(e) => {
               e.stopPropagation();
@@ -154,13 +161,11 @@ const AllEmployees: React.FC<AllEmployeesProps> = ({ onMount }) => {
 
   // Calculate paginated data
   const paginatedUsers = useMemo(() => {
-    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-    return filteredEmployees.slice(startIndex, startIndex + ITEMS_PER_PAGE);
-  }, [filteredEmployees, currentPage]);
+    const startIndex = (currentPage - 1) * rowsPerPage;
+    return filteredEmployees.slice(startIndex, startIndex + rowsPerPage);
+  }, [filteredEmployees, currentPage, rowsPerPage]);
   // Reset to first page when filters or search change
-  React.useEffect(() => {
-    setCurrentPage(1);
-  }, [searchQuery, currentFilters]);
+
 
   const handleFilterClick = () => {
     setIsFilterPopupOpen(true);
@@ -176,15 +181,16 @@ const AllEmployees: React.FC<AllEmployeesProps> = ({ onMount }) => {
     navigate(`/employees/${employee.id}`);
   };
 
+
   return (
     <div className="w-full flex flex-col bg-white">
       <div className="mb-2">
-        <Topbar 
+        <Topbar
           title={
             <div className="w-[140px] h-[30px] font-semibold text-[19px] leading-6 text-[#16151C]">
               All Employees
             </div>
-          } 
+          }
           subtitle="All Employee Information"
           subtitleClassName="font-light text-[14px] leading-6 text-[#9CA3AF]"
         />
@@ -207,7 +213,7 @@ const AllEmployees: React.FC<AllEmployeesProps> = ({ onMount }) => {
           </div>
 
           <div className="flex space-x-3 w-full md:w-auto">
-            <Button 
+            <Button
               label={
                 <div className="flex items-center space-x-2">
                   <img src="/images/add.png" className="h-[24px] w-[24px]" alt="Add" />
@@ -218,7 +224,7 @@ const AllEmployees: React.FC<AllEmployeesProps> = ({ onMount }) => {
               className="px-4 py-2 rounded-lg text-sm hover:bg-[#5e44d1] w-[221px] h-[50px] flex items-center justify-center"
               onClick={() => navigate('/add-new-employee')}
             />
-            <Button 
+            <Button
               label={
                 <div className="flex items-center space-x-2">
                   <img src="/images/filter.png" className="h-[24px] w-[24px]" alt="Filter" />
@@ -235,7 +241,7 @@ const AllEmployees: React.FC<AllEmployeesProps> = ({ onMount }) => {
         <div className="px-1 overflow-hidden ">
           <div className="overflow-auto text-sm">
             {paginatedUsers.length > 0 ? (
-              <Table 
+              <Table
                 columns={columns}
                 data={paginatedUsers}
                 onRowClick={handleRowClick}
@@ -248,15 +254,16 @@ const AllEmployees: React.FC<AllEmployeesProps> = ({ onMount }) => {
               </div>
             )}
           </div>
-          
+
           {/* Pagination */}
           <div className="px-6 py-1 border-t border-gray-200">
             <Pagination
               currentPage={currentPage}
-              totalPages={Math.ceil(filteredEmployees.length / ITEMS_PER_PAGE)}
+              totalPages={Math.ceil(filteredEmployees.length / rowsPerPage)}
               onPageChange={setCurrentPage}
               totalItems={filteredEmployees.length}
-              itemsPerPage={ITEMS_PER_PAGE}
+              itemsPerPage={rowsPerPage}
+              onItemsPerPageChange={(value) => setRowsPerPage(value)}
             />
           </div>
         </div>

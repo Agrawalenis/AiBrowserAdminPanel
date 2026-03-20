@@ -1,20 +1,16 @@
 import React from "react";
-import { ChevronLeft, ChevronRight, ChevronDown } from 'lucide-react';
+import {  ChevronDown } from 'lucide-react';
+import type { PaginationProps } from "../../types";
 
-interface PaginationProps {
-  currentPage: number;
-  totalPages: number;
-  onPageChange: (page: number) => void;
-  totalItems: number;
-  itemsPerPage: number;
-}
+
 
 const Pagination: React.FC<PaginationProps> = ({
   currentPage,
   totalPages,
   onPageChange,
   totalItems,
-  itemsPerPage
+  itemsPerPage,
+  onItemsPerPageChange
 }) => {
   const startItem = (currentPage - 1) * itemsPerPage + 1;
   const endItem = Math.min(currentPage * itemsPerPage, totalItems);
@@ -36,18 +32,23 @@ const Pagination: React.FC<PaginationProps> = ({
     return pages;
   };
 
+  
+
   return (
     <div className="flex items-center justify-between px-1 py-2 bg-white w-full h-full">
       {/* Left: Number of users with square border */}
-      <div className="flex items-center gap-[20px]">
-        <div className="flex items-center">
-          <span className="text-sm text-[#A2A1A8] mr-2">Showing</span>
-        </div>
-        <div className="w-[76px] h-[46px] border border-[#A2A1A833] bg-white rounded-[10px] flex items-center justify-between px-3 text-sm font-[300]">
-            <span>{itemsPerPage}</span>
-            <ChevronDown className="h-4 w-4 text-[#16151C]" />
-          </div>
-      </div>
+      <div className="w-[76px] h-[46px] border border-[#A2A1A833] bg-white rounded-[10px] flex items-center px-2">
+  <select
+    value={itemsPerPage}
+    onChange={(e) => onItemsPerPageChange(Number(e.target.value))}
+    className="w-full h-full bg-transparent outline-none text-sm cursor-pointer"
+  >
+    <option value={5}>5</option>
+    <option value={10}>10</option>
+    <option value={15}>15</option>
+    <option value={20}>20</option>
+  </select>
+</div>
       
       {/* Center: Showing text */}
       <div className="text-sm text-[#A2A1A8]">

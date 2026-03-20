@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { mockPayrollData } from '../../mock/payroll';
 import type { Payroll, PayrollStatus, TableColumn } from '../../types';
@@ -7,13 +7,18 @@ import Table from "../../Components/table/Table";
 import Button from "../../Components/buttons/Button";
 import Pagination from "../../Components/table/Pagination";
 
-const ITEMS_PER_PAGE = 10;
 
 interface PayrollProps {
   onMount?: () => void;
 }
 
 const Payroll: React.FC<PayrollProps> = ({ onMount }) => {
+const [rowsPerPage, setRowsPerPage] = useState(10);
+
+useEffect(() => {
+  setCurrentPage(1);
+}, [rowsPerPage]);
+
   React.useEffect(() => {
     if (onMount) onMount();
   }, [onMount]);
@@ -93,15 +98,14 @@ const Payroll: React.FC<PayrollProps> = ({ onMount }) => {
   }, [payrollData, searchQuery, activeFilter]);
 
   // Calculate paginated data
-  const paginatedPayroll = useMemo(() => {
-    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-    return filteredPayroll.slice(startIndex, startIndex + ITEMS_PER_PAGE);
-  }, [filteredPayroll, currentPage]);
+const paginatedPayroll = useMemo(() => {
+  const startIndex = (currentPage - 1) * rowsPerPage;
+  return filteredPayroll.slice(startIndex, startIndex + rowsPerPage);
+}, [filteredPayroll, currentPage, rowsPerPage]);
   // Reset to first page when filters or search change
-  React.useEffect(() => {
-    setCurrentPage(1);
-  }, [searchQuery, activeFilter]);
-
+  useEffect(() => {
+  setCurrentPage(1);
+}, [searchQuery, activeFilter, rowsPerPage]);
   const navigate = useNavigate();
 
   const handleRowClick = (payroll: Payroll) => {
@@ -174,10 +178,11 @@ const Payroll: React.FC<PayrollProps> = ({ onMount }) => {
           <div className="px-6 py-1 border-t border-gray-200">
             <Pagination
               currentPage={currentPage}
-              totalPages={Math.ceil(filteredPayroll.length / ITEMS_PER_PAGE)}
+             totalPages={Math.ceil(filteredPayroll.length / rowsPerPage)}
               onPageChange={setCurrentPage}
               totalItems={filteredPayroll.length}
-              itemsPerPage={ITEMS_PER_PAGE}
+              itemsPerPage={rowsPerPage}
+              onItemsPerPageChange={(value) => setRowsPerPage(value)}
             />
           </div>
         </div>

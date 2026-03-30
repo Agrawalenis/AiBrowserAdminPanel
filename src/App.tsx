@@ -19,7 +19,7 @@ import AllWebsites from "./Pages/AllWebsites/AllWebsites";
 import UpcomingFeatures from "./Pages/UpcomingModules/UpcomingFeatures";
 import AllDepartments from "./Pages/AllDepartments/Alldepartments";
 import DepartmentDetails from "./Pages/AllDepartments/DepartmentDetails";
-
+import AttendancePage from "./Pages/Attendence/AttendancePage";
 const AppContent: React.FC = () => {
   const [activePage, setActivePage] = useState("All Users");
   const location = useLocation();
@@ -66,6 +66,7 @@ const AppContent: React.FC = () => {
           <Route path="/add-new-employee" element={<AddNewEmployee />} />
           <Route path="/jobs" element={<Jobs />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/attendance" element={<AttendancePage/>} />
           <Route path="/payroll" element={
             <React.Suspense fallback={<div>Loading...</div>}>
               <PayrollWrapper />

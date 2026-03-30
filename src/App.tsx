@@ -18,7 +18,7 @@ import Trendings from "./Pages/Trending/Trendings";
 import AllWebsites from "./Pages/AllWebsites/AllWebsites";
 import UpcomingFeatures from "./Pages/UpcomingModules/UpcomingFeatures";
 import AllDepartments from "./Pages/AllDepartments/AllDepartments";
-import DepartmentDetails from "./Pages/AllDepartments/DepartmentDetails";
+import DepartmentDetails from "./Pages/AllDepartments/DepartmentDetails.tsx";
 import AttendancePage from "./Pages/Attendence/AttendancePage";
 const AppContent: React.FC = () => {
   const [activePage, setActivePage] = useState("All Users");
